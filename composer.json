@@ -1,0 +1,36 @@
+{
+    "name": "seregazghuk/favro-api",
+    "description": "A PHP wrapper for the official Favro API",
+    "keywords": [
+        "php",
+        "lib",
+        "favro"
+    ],
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zhuk Sergey",
+            "email": "seregazhuk88@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "seregazhuk\\Favro\\" : "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "seregazhuk\\Favro\\" : "src",
+            "seregazhuk\\tests\\" : "tests"
+        }
+    }
+}
