@@ -21,6 +21,14 @@ interface HttpInterface
     public function post($uri, $body = [], $headers = []);
 
     /**
+     * @param string $uri
+     * @param array $body
+     * @param array $headers
+     * @return mixed
+     */
+    public function put($uri, $body = [], $headers = []);
+
+    /**
      * @param string $url
      * @return $this
      */

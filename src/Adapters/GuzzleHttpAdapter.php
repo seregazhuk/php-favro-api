@@ -53,12 +53,34 @@ class GuzzleHttpAdapter implements HttpInterface
                 $uri,
                 [
                     'headers' => $headers,
-                    'body' => $body
+                    'form_params' => $body
                 ]
             );
 
         return $this->parseResponse($response);
     }
+
+    /**
+     * @param string $uri
+     * @param array $body
+     * @param array $headers
+     * @return mixed
+     */
+    public function put($uri, $body = [], $headers = [])
+    {
+        $response = $this
+            ->client
+            ->put(
+                $uri,
+                [
+                    'headers' => $headers,
+                    'form_params'    => $body,
+                ]
+            );
+
+        return $this->parseResponse($response);
+    }
+
     /**
      * @param string $url
      * @return $this
@@ -75,4 +97,5 @@ class GuzzleHttpAdapter implements HttpInterface
 
         return json_decode($responseContents, true);
     }
+
 }
