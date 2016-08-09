@@ -4,6 +4,7 @@ namespace seregazhuk\Favro\Api;
 
 use seregazhuk\Favro\Api\Endpoints\Users;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
+use seregazhuk\Favro\Api\Endpoints\Collections;
 use seregazhuk\Favro\Api\Endpoints\Organizations;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
 
@@ -12,6 +13,7 @@ use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
  *
  * @property Organizations $organizations
  * @property Users $users
+ * @property Collections $collections
  */
 class Api
 {
