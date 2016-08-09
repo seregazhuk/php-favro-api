@@ -3,8 +3,8 @@
 namespace seregazhuk\Favro;
 
 use GuzzleHttp\Client;
-use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
 use seregazhuk\Favro\Api\Api;
+use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
 
 class Favro
