@@ -29,6 +29,13 @@ interface HttpInterface
     public function put($uri, $body = [], $headers = []);
 
     /**
+     * @param string $uri
+     * @param array $headers
+     * @return mixed
+     */
+    public function delete($uri, $headers = []);
+
+    /**
      * @param string $url
      * @return $this
      */

@@ -56,4 +56,19 @@ class Collections extends Endpoint
                 ['organizationId' => $organizationId]
             );
     }
+
+    /**
+     * @param string $collectionId
+     * @param string $organizationId
+     * @return mixed
+     */
+    public function delete($collectionId, $organizationId)
+    {
+        return $this
+            ->http
+            ->delete(
+                $this->makeRequestUrl($collectionId),
+                ['organizationId' => $organizationId]
+        );
+    }
 }

@@ -82,6 +82,20 @@ class GuzzleHttpAdapter implements HttpInterface
     }
 
     /**
+     * @param string $uri
+     * @param array $headers
+     * @return mixed
+     */
+    public function delete($uri, $headers = [])
+    {
+        $response = $this
+            ->client
+            ->delete($uri, ['headers' => $headers]);
+
+        return $this->parseResponse($response);
+    }
+
+    /**
      * @param string $url
      * @return $this
      */
