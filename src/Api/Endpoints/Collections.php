@@ -38,23 +38,36 @@ class Collections extends Endpoint
     }
 
     /**
-     * @param string $name
+     * @param array $attributes
      * @param string $organizationId
-     * @param array $shareToUsers
      * @return array
      */
-    public function create($name, $organizationId, $shareToUsers = [])
+    public function create(array $attributes, $organizationId)
     {
         return $this
             ->http
             ->post(
                 $this->makeRequestUrl(),
-                [
-                    'name'         => $name,
-                    'shareToUsers' => $shareToUsers,
-                ],
+                $attributes,
                 ['organizationId' => $organizationId]
             );
+    }
+
+	/**
+	 * @param string $collectionId
+	 * @param string $organizationId
+	 * @param array $attributes
+	 * @return mixed
+	 */
+	public function update($collectionId, $organizationId, array $attributes)
+	{
+		return $this
+			->http
+			->put(
+				$this->makeRequestUrl($collectionId),
+				$attributes,
+				['organizationId' => $organizationId]
+			);
     }
 
     /**
