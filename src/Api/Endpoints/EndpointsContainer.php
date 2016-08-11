@@ -20,12 +20,19 @@ class EndpointsContainer
      */
     protected $endpoints = [];
 
+	/**
+	 * @param HttpInterface $http
+	 */
     public function __construct(HttpInterface $http)
     {
         $this->http = $http;
     }
-    
-    
+
+
+	/**
+	 * @param string $endpoint
+	 * @return Endpoint
+	 */
     public function resolveEndpoint($endpoint)
     {
         $endpoint = strtolower($endpoint);
@@ -37,8 +44,11 @@ class EndpointsContainer
 
         return $this->endpoints[$endpoint];
     }
-    
-    
+
+	/**
+	 * @param $endpoint
+	 * @throws BadEndpointException
+	 */
     protected function addProvider($endpoint)
     {
         $className = self::ENDPOINTS_NAMESPACE . ucfirst($endpoint);
@@ -51,6 +61,10 @@ class EndpointsContainer
     }
 
 
+	/**
+	 * @param string $className
+	 * @return Endpoint|object
+	 */
     protected function buildEndpoint($className)
     {
         return (new ReflectionClass($className))

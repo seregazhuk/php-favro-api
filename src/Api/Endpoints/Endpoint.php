@@ -16,6 +16,9 @@ class Endpoint
      */
     protected $http;
 
+	/**
+	 * @param HttpInterface $http
+	 */
     public function __construct(HttpInterface $http)
     {
         $this->http = $http;

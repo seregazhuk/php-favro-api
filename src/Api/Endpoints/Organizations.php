@@ -6,6 +6,9 @@ class Organizations extends Endpoint
 {
     protected $endpoint = 'organizations';
 
+	/**
+	 * @return array
+	 */
     public function getAll()
     {
         return $this

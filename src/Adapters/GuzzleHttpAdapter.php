@@ -105,6 +105,10 @@ class GuzzleHttpAdapter implements HttpInterface
         return $this;
     }
 
+	/**
+	 * @param ResponseInterface $response
+	 * @return array|null
+	 */
     protected function parseResponse(ResponseInterface $response)
     {
         $responseContents = $response->getBody()->getContents();
