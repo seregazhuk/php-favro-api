@@ -9,5 +9,8 @@ class Collections extends Endpoint
 {
 	use BelongsToOrganization, CrudEndpoint;
 
+	/**
+	 * @var string
+	 */
     protected $endpoint = 'collections';
 }

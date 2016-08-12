@@ -8,5 +8,8 @@ class Users extends Endpoint
 {
 	use BelongsToOrganization;
 
+	/**
+	 * @var string
+	 */
     protected $endpoint = 'users';
 }

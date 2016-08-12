@@ -9,5 +9,8 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 class Cards extends Endpoint {
 	use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
 
+	/**
+	 * @var string
+	 */
 	protected $endpoint = 'cards';
 }

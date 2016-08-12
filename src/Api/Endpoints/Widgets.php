@@ -9,5 +9,8 @@ class Widgets extends Endpoint {
 
 	use BelongsToOrganization, CrudEndpoint;
 
+	/**
+	 * @var string
+	 */
 	protected $endpoint = 'widgets';
 }

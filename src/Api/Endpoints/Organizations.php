@@ -8,6 +8,9 @@ class Organizations extends Endpoint
 {
 	use CrudEndpoint;
 
+	/**
+	 * @var string
+	 */
     protected $endpoint = 'organizations';
 
 	/**
