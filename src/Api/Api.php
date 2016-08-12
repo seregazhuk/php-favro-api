@@ -3,6 +3,7 @@
 namespace seregazhuk\Favro\Api;
 
 use seregazhuk\Favro\Api\Endpoints\Users;
+use seregazhuk\Favro\Api\Endpoints\Widgets;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
 use seregazhuk\Favro\Api\Endpoints\Collections;
 use seregazhuk\Favro\Api\Endpoints\Organizations;
@@ -14,6 +15,7 @@ use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
  * @property Organizations $organizations
  * @property Users $users
  * @property Collections $collections
+ * @property Widgets $widgets
  */
 class Api
 {
@@ -22,8 +24,13 @@ class Api
      */
     protected $endpointsContainer;
 
+	/**
+	 * @var string
+	 */
+	protected $organizationId;
 
-    public function __construct(EndpointsContainer $endpointsContainer)
+
+	public function __construct(EndpointsContainer $endpointsContainer)
     {
         $this->endpointsContainer = $endpointsContainer;
     }
@@ -37,6 +44,24 @@ class Api
      */
     public function __get($endpoint)
     {
-        return $this->endpointsContainer->resolveEndpoint($endpoint);
+        $endpoint = $this->endpointsContainer
+	        ->resolveEndpoint($endpoint);
+
+	    if(property_exists($endpoint, 'organizationId')) {
+	    	$endpoint->setOrganization($this->organizationId);
+	    }
+
+	    return $endpoint;
+    }
+
+	/**
+	 * @param int $organizationId
+	 * @return $this
+	 */
+	public function setOrganization($organizationId)
+	{
+		$this->organizationId = $organizationId;
+
+		return $this;
     }
 }

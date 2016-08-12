@@ -2,7 +2,9 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-class Collections extends BelongsToOrganizationEndpoint
+class Collections extends Endpoint
 {
+	use BelongsToOrganization;
+
     protected $endpoint = 'collections';
 }

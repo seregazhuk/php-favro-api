@@ -22,8 +22,6 @@ class Favro
         return new Api($endpointsContainer);
     }
 
-    private function __construct(){}
-
     /**
      * @param string $login
      * @param string $password
@@ -36,5 +34,7 @@ class Favro
         );
     }
 
-    private function __clone(){}
+	private function __construct(){}
+
+	private function __clone(){}
 }
