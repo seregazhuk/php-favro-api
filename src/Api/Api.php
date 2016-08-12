@@ -36,7 +36,7 @@ class Api
     }
 
     /**
-     * Magic method to access different providers.
+     * Magic method to access different endpoints.
      *
      * @param string $endpoint
      *
@@ -47,8 +47,8 @@ class Api
         $endpoint = $this->endpointsContainer
 	        ->resolveEndpoint($endpoint);
 
-	    if(property_exists($endpoint, 'organizationId')) {
-	    	$endpoint->setOrganization($this->organizationId);
+	    if(method_exists($endpoint, 'setOrganizationId')) {
+	    	$endpoint->setOrganizationId($this->organizationId);
 	    }
 
 	    return $endpoint;

@@ -84,11 +84,13 @@ trait BelongsToOrganization {
 			);
 	}
 
+
+
 	/**
 	 * @param int $organizationId
 	 * @return $this
 	 */
-	public function setOrganization($organizationId)
+	public function setOrganizationId($organizationId)
 	{
 		$this->organizationId = $organizationId;
 
