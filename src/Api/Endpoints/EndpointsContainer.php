@@ -28,7 +28,6 @@ class EndpointsContainer
         $this->http = $http;
     }
 
-
 	/**
 	 * @param string $endpoint
 	 * @return Endpoint

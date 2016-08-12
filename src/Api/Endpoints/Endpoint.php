@@ -39,7 +39,7 @@ class Endpoint
      * @param string $verb
      * @return string
      */
-    protected function makeRequestUrl($verb = '')
+    public function makeRequestUrl($verb = '')
     {
         return "https://favro.com/api/v1/{$this->endpoint}/$verb";
     }
