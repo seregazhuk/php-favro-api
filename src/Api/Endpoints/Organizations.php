@@ -2,67 +2,22 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
+use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
+
 class Organizations extends Endpoint
 {
+	use CrudEndpoint;
+
     protected $endpoint = 'organizations';
 
 	/**
+	 * @param string $id
 	 * @return array
 	 */
-    public function getAll()
-    {
-        return $this
-            ->http
-            ->get($this->makeRequestUrl(), []);
-    }
+	public function getById($id)
+	{
+		$this->headers['organizationId'] = $id;
 
-    /**
-     * @param int $organizationId
-     * @return array
-     */
-    public function getById($organizationId)
-    {
-        return $this->http->get(
-            $this->makeRequestUrl(':id'),
-            [],
-            ['organizationId' => $organizationId]);
-    }
-
-    /**
-     * @param string $name
-     * @param array $shareToUsers
-     * @return array
-     */
-    public function create($name, array $shareToUsers = [])
-    {
-        return $this->http->post(
-            $this->makeRequestUrl(),
-            [
-                'name'         => $name,
-                'shareToUsers' => $shareToUsers,
-            ]
-        );
-    }
-
-    /**
-     * @param string $organizationId
-     * @param string $name
-     * @param array $members
-     * @param array $shareToUsers
-     * @return array
-     */
-    public function update($organizationId, $name, $members = [], $shareToUsers = [])
-    {
-        return $this
-            ->http
-            ->put(
-                $this->makeRequestUrl($organizationId),
-                [
-                    'name'         => $name,
-                    'members'      => $members,
-                    'shareToUsers' => $shareToUsers,
-                ],
-                ['organizationId' => $organizationId]
-            );
-    }
+		return parent::getById($id);
+	}
 }

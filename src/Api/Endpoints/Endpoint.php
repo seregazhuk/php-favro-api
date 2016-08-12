@@ -22,6 +22,11 @@ class Endpoint
      */
     protected $endpoint;
 
+	/**
+	 * @var array
+	 */
+	protected $headers = [];
+
     /**
      * @var HttpInterface
      */
@@ -62,21 +67,6 @@ class Endpoint
     }
 
 	/**
-	 * @param string $id
-	 * @return array
-	 */
-	public function getById($id)
-	{
-		return $this
-			->getHttp()
-			->get(
-				$this->makeRequestUrl($id),
-				[],
-				$this->getHeaders()
-			);
-	}
-
-	/**
 	 * @param array $params
 	 * @return array
 	 */
@@ -92,10 +82,25 @@ class Endpoint
 	}
 
 	/**
+	 * @param string $id
+	 * @return array
+	 */
+	public function getById($id)
+	{
+		return $this
+			->getHttp()
+			->get(
+				$this->makeRequestUrl($id),
+				[],
+				$this->getHeaders()
+			);
+	}
+
+	/**
 	 * @return array
 	 */
 	protected function getHeaders()
 	{
-		return [];
+		return $this->headers;
 	}
 }
