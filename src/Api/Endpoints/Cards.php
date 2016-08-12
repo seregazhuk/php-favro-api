@@ -6,8 +6,8 @@ use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToWidget;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
-class Columns extends Endpoint {
+class Cards extends Endpoint {
 	use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
 
-	protected $endpoint = 'columns';
+	protected $endpoint = 'cards';
 }
