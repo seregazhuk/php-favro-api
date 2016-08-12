@@ -2,8 +2,10 @@
 
 namespace seregazhuk\Favro\Api;
 
-use seregazhuk\Favro\Api\Endpoints\Columns;
+use seregazhuk\Favro\Api\Endpoints\Cards;
+use seregazhuk\Favro\Api\Endpoints\Tasks;
 use seregazhuk\Favro\Api\Endpoints\Users;
+use seregazhuk\Favro\Api\Endpoints\Columns;
 use seregazhuk\Favro\Api\Endpoints\Widgets;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
 use seregazhuk\Favro\Api\Endpoints\Collections;
@@ -18,6 +20,8 @@ use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
  * @property Collections $collections
  * @property Widgets $widgets
  * @property Columns $columns
+ * @property Cards $cards
+ * @property Tasks $tasks
  */
 class Api
 {
