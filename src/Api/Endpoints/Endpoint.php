@@ -61,4 +61,41 @@ class Endpoint
 		return $this->http;
     }
 
+	/**
+	 * @param string $id
+	 * @return array
+	 */
+	public function getById($id)
+	{
+		return $this
+			->getHttp()
+			->get(
+				$this->makeRequestUrl($id),
+				[],
+				$this->getHeaders()
+			);
+	}
+
+	/**
+	 * @param array $params
+	 * @return array
+	 */
+	public function getAll(array $params = [])
+	{
+		return $this
+			->getHttp()
+			->get(
+				$this->makeRequestUrl(),
+				$params,
+				$this->getHeaders()
+			);
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function getHeaders()
+	{
+		return [];
+	}
 }
