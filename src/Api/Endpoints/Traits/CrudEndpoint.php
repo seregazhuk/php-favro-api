@@ -1,7 +1,7 @@
 <?php
 
 
-namespace seregazhuk\Favro\Api\Endpoints;
+namespace seregazhuk\Favro\Api\Endpoints\Traits;
 
 trait CrudEndpoint {
 
