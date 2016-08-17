@@ -7,6 +7,7 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToCard;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
 class Tasks extends Endpoint {
+
 	use BelongsToOrganization, BelongsToCard, CrudEndpoint;
 
 	/**

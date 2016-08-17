@@ -7,6 +7,7 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToWidget;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
 class Columns extends Endpoint {
+
 	use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
 
 	/**

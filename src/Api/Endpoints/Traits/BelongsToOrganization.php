@@ -20,6 +20,9 @@ trait BelongsToOrganization {
 		return $this;
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function getHeaders()
 	{
 		return ['organizationId' => $this->organizationId];
