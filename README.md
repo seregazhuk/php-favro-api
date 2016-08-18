@@ -18,6 +18,7 @@
 - [Quick Start](#quick-start)
 - [Users](#users)
 - [Organizations](#organizations)
+- [Collections](#collections)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -81,4 +82,31 @@ $result = $favro->organizations->create($attributes);
 [Update an organization](https://favro.com/developer/#update-an-organization):
 ```php
 $result = $favro->organizations->update($organizationId, $attributes);
+```
+
+## Collections
+
+[Get all collections](https://favro.com/developer/#get-all-collections):
+```php
+$result = $favro->collections->getAll();
+```
+
+[Get an collection](https://favro.com/developer/#get-a-collection):
+```php
+$result = $favro->collections->getById($collectionId);
+```
+
+[Create a collection](https://favro.com/developer/#create-a-collection):
+```php
+$result = $favro->collections->create($attributes);
+```
+
+[Update a collection](https://favro.com/developer/#update-a-collection):
+```php
+$result = $favro->collections->update($collectionId, $attributes);
+```
+
+[Delete a collection](https://favro.com/developer/#delete-a-collection):
+```php
+$result = $favro->collections->delete($collectionId);
 ```
