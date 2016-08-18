@@ -30,13 +30,18 @@ composer require "seregazhuk/favro-api:*"
 
 ```php 
 // You may need to amend this path to locate composer's autoloader
-require('vendor/autoload.php'); 
+require './vendor/autoload.php';
 
-use seregazhuk\SmsIntel\SmsIntel;
+use seregazhuk\Favro\Favro;
 
-$sender = SmsIntel::create('login', 'password');
+$favro = Favro::create('seregazhuk88@gmail.com', 'Eikah1ei');
 
-// send sms
-$result = $sender->send('phoneNumber', 'From', 'Your message text');
+// get your organizations
+$result = $favro->organizations->getAll();
+$organizations = $result['entities'];
 
-```
+// select first organization
+$favro->setOrganization($organizations[0]['organizationId']);
+
+// get all collections
+$result = $favro->collections->getAll();
