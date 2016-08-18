@@ -16,6 +16,7 @@
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Users](#users)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -45,3 +46,16 @@ $favro->setOrganization($organizations[0]['organizationId']);
 
 // get all collections
 $result = $favro->collections->getAll();
+```
+
+## Users
+
+[Get all users](https://favro.com/developer/#get-all-users):
+```php
+$result = $favro->users->getAll();
+```
+
+[Get a user](https://favro.com/developer/#get-a-user):
+```php
+$result = $favro->users->getById($userId);
+```
