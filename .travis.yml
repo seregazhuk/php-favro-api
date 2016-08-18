@@ -1,13 +1,13 @@
 language: php
-
 php:
-  - 5.5
-
+- 5.5
 before_script:
-  - composer install --prefer-source --no-interaction --dev
-  - composer dump-autoload
-
+- composer install --prefer-source --no-interaction --dev
+- composer dump-autoload
 script: phpunit
-
 after_script:
-  - vendor/bin/test-reporter
+- vendor/bin/test-reporter
+addons:
+  code_climate:
+    repo_token:
+      secure: jGlnYB27cVMZK0XkBQ1Nj307WnS3Gvhdc75tDcrVa7C6ban9H5S2XSqVo0GEFOmvFAJPdojpasC1fziWzhud5GmCXLTZqoGXcdFba62OvUvlKk7jXiRv8DJ40WiNR6T0J3iUnepbrrX+kccVXfdvhfzsYZrFY5mIUMoGDEy18qW3i6kxDlrvFrqKy5J7PcT5ACAy/abEpr5+Hb6dPzZKZH5+8kUuax6nGYmx6Z7uIdM4crnDXpnS0T/w/N8kZPITbKuaLDZxiTSM78nUQ0I6FD6eXWap6iCT8uqnnAqyCsrkTX37WtNsP5JaFPiCS89IUS8BVVLCnw+1YAwWXfXCxUhrrlH6VgnQ5nUONVPaqeEt4hhh9V86jPP3I7XQSeWUH9Ri5iuBOBIaZsry61/kN+FAjhBWZgnDJMNbB03UbF1S9d4z9PfOYO7SzdtzESxVnW/1wIwRSezNSPYc/RkBtL/b7vGV3G9hIUn4kVzSkLmw7t9qSfzC3EeiSmx9PuY5S+mALghCrRwJJaahtZxgW33TwzkcaCSDHk0x2TxUk+ceOrUsREq22jIB0yq7cpPKOmd2wEqOwNSs401n+ZeqrrwCohx/YLE6+4tr/9SRLI3d/BoxWTUlGxtuRTZF8qDAq0d7nrr+XM4r0k0rAnOsoZFN1RNQjp/oZDYr5tPXY8o=
