@@ -10,9 +10,9 @@ class EndpointsContainer
 {
     const ENDPOINTS_NAMESPACE = 'seregazhuk\\Favro\\Api\\Endpoints\\';
 
-     /*
-     * @var HttpInterface
-     */
+    /*
+    * @var HttpInterface
+    */
     protected $http;
 
     /*
@@ -20,18 +20,18 @@ class EndpointsContainer
      */
     protected $endpoints = [];
 
-	/**
-	 * @param HttpInterface $http
-	 */
+    /**
+     * @param HttpInterface $http
+     */
     public function __construct(HttpInterface $http)
     {
         $this->http = $http;
     }
 
-	/**
-	 * @param string $endpoint
-	 * @return Endpoint
-	 */
+    /**
+     * @param string $endpoint
+     * @return Endpoint
+     */
     public function resolveEndpoint($endpoint)
     {
         $endpoint = strtolower($endpoint);
@@ -44,10 +44,10 @@ class EndpointsContainer
         return $this->endpoints[$endpoint];
     }
 
-	/**
-	 * @param $endpoint
-	 * @throws BadEndpointException
-	 */
+    /**
+     * @param $endpoint
+     * @throws BadEndpointException
+     */
     protected function addProvider($endpoint)
     {
         $className = self::ENDPOINTS_NAMESPACE . ucfirst($endpoint);
@@ -59,14 +59,12 @@ class EndpointsContainer
         $this->endpoints[$endpoint] = $this->buildEndpoint($className);
     }
 
-
-	/**
-	 * @param string $className
-	 * @return Endpoint|object
-	 */
+    /**
+     * @param string $className
+     * @return Endpoint|object
+     */
     protected function buildEndpoint($className)
     {
-        return (new ReflectionClass($className))
-            ->newInstanceArgs([$this->http]);
+        return (new ReflectionClass($className))->newInstanceArgs([$this->http]);
     }
 }

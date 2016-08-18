@@ -7,10 +7,10 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
 class Collections extends Endpoint
 {
-	use BelongsToOrganization, CrudEndpoint;
+    use BelongsToOrganization, CrudEndpoint;
 
-	/**
-	 * @var string
-	 */
+    /**
+     * @var string
+     */
     protected $endpoint = 'collections';
 }

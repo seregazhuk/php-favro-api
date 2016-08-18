@@ -6,12 +6,13 @@ use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToWidget;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
-class Cards extends Endpoint {
+class Cards extends Endpoint
+{
 
-	use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
+    use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
 
-	/**
-	 * @var string
-	 */
-	protected $endpoint = 'cards';
+    /**
+     * @var string
+     */
+    protected $endpoint = 'cards';
 }

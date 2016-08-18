@@ -30,13 +30,12 @@ class Api
      */
     protected $endpointsContainer;
 
-	/**
-	 * @var string
-	 */
-	protected $organizationId;
+    /**
+     * @var string
+     */
+    protected $organizationId;
 
-
-	public function __construct(EndpointsContainer $endpointsContainer)
+    public function __construct(EndpointsContainer $endpointsContainer)
     {
         $this->endpointsContainer = $endpointsContainer;
     }
@@ -50,24 +49,23 @@ class Api
      */
     public function __get($endpoint)
     {
-        $endpoint = $this->endpointsContainer
-	        ->resolveEndpoint($endpoint);
+        $endpoint = $this->endpointsContainer->resolveEndpoint($endpoint);
 
-	    if(method_exists($endpoint, 'setOrganizationId')) {
-	    	$endpoint->setOrganizationId($this->organizationId);
-	    }
+        if (method_exists($endpoint, 'setOrganizationId')) {
+            $endpoint->setOrganizationId($this->organizationId);
+        }
 
-	    return $endpoint;
+        return $endpoint;
     }
 
-	/**
-	 * @param int $organizationId
-	 * @return $this
-	 */
-	public function setOrganization($organizationId)
-	{
-		$this->organizationId = $organizationId;
+    /**
+     * @param int $organizationId
+     * @return $this
+     */
+    public function setOrganization($organizationId)
+    {
+        $this->organizationId = $organizationId;
 
-		return $this;
+        return $this;
     }
 }

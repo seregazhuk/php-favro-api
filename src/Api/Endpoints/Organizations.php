@@ -6,21 +6,21 @@ use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
 
 class Organizations extends Endpoint
 {
-	use CrudEndpoint;
+    use CrudEndpoint;
 
-	/**
-	 * @var string
-	 */
+    /**
+     * @var string
+     */
     protected $endpoint = 'organizations';
 
-	/**
-	 * @param string $id
-	 * @return array
-	 */
-	public function getById($id)
-	{
-		$this->headers['organizationId'] = $id;
+    /**
+     * @param string $id
+     * @return array
+     */
+    public function getById($id)
+    {
+        $this->headers['organizationId'] = $id;
 
-		return parent::getById($id);
-	}
+        return parent::getById($id);
+    }
 }

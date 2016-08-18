@@ -6,10 +6,10 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
 class Users extends Endpoint
 {
-	use BelongsToOrganization;
+    use BelongsToOrganization;
 
-	/**
-	 * @var string
-	 */
+    /**
+     * @var string
+     */
     protected $endpoint = 'users';
 }

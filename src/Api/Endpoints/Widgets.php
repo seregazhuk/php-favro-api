@@ -5,12 +5,13 @@ namespace seregazhuk\Favro\Api\Endpoints;
 use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
 use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
-class Widgets extends Endpoint {
+class Widgets extends Endpoint
+{
 
-	use BelongsToOrganization, CrudEndpoint;
+    use BelongsToOrganization, CrudEndpoint;
 
-	/**
-	 * @var string
-	 */
-	protected $endpoint = 'widgets';
+    /**
+     * @var string
+     */
+    protected $endpoint = 'widgets';
 }

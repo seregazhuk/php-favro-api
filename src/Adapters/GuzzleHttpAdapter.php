@@ -12,6 +12,7 @@ class GuzzleHttpAdapter implements HttpInterface
      * @var ClientInterface
      */
     protected $client;
+
     /**
      * @param ClientInterface $client
      */
@@ -32,9 +33,7 @@ class GuzzleHttpAdapter implements HttpInterface
             $uri .= '?' . http_build_query($params);
         }
 
-        $response = $this
-            ->client
-            ->get($uri, ['headers' => $headers]);
+        $response = $this->client->get($uri, ['headers' => $headers]);
 
         return $this->parseResponse($response);
     }
@@ -47,13 +46,10 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     public function post($uri, $body = [], $headers = [])
     {
-        $response = $this
-            ->client
-            ->post(
-                $uri,
-                [
-                    'headers' => $headers,
-                    'form_params' => $body
+        $response = $this->client->post(
+                $uri, [
+                    'headers'     => $headers,
+                    'form_params' => $body,
                 ]
             );
 
@@ -68,13 +64,10 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     public function put($uri, $body = [], $headers = [])
     {
-        $response = $this
-            ->client
-            ->put(
-                $uri,
-                [
-                    'headers' => $headers,
-                    'form_params'    => $body,
+        $response = $this->client->put(
+                $uri, [
+                    'headers'     => $headers,
+                    'form_params' => $body,
                 ]
             );
 
@@ -88,9 +81,7 @@ class GuzzleHttpAdapter implements HttpInterface
      */
     public function delete($uri, $headers = [])
     {
-        $response = $this
-            ->client
-            ->delete($uri, ['headers' => $headers]);
+        $response = $this->client->delete($uri, ['headers' => $headers]);
 
         return $this->parseResponse($response);
     }
@@ -105,10 +96,10 @@ class GuzzleHttpAdapter implements HttpInterface
         return $this;
     }
 
-	/**
-	 * @param ResponseInterface $response
-	 * @return array|null
-	 */
+    /**
+     * @param ResponseInterface $response
+     * @return array|null
+     */
     protected function parseResponse(ResponseInterface $response)
     {
         $responseContents = $response->getBody()->getContents();
