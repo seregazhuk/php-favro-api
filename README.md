@@ -19,6 +19,7 @@
 - [Users](#users)
 - [Organizations](#organizations)
 - [Collections](#collections)
+- [Widgets](#widgets)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
