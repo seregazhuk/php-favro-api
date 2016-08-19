@@ -110,3 +110,24 @@ $result = $favro->collections->update($collectionId, $attributes);
 ```php
 $result = $favro->collections->delete($collectionId);
 ```
+
+## Widgets
+[Get all widgets](https://favro.com/developer/#get-all-widgets):
+```php
+$result = $favro->widgets->getAll();
+```
+
+[Get a widget](https://favro.com/developer/#get-a-widget):
+```php
+$result = $favro->widgets->getById($widgetId);
+```
+
+[Create a widget](https://favro.com/developer/#create-a-widget):
+```php
+$result = $favro->widgets->create($attributes); 
+```
+
+[Update a widget](https://favro.com/developer/#update-a-widget):
+```php
+$result = $favro->widgets->update(
+```
