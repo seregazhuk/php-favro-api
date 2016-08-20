@@ -2,8 +2,8 @@
 
 namespace seregazhuk\tests;
 
-use seregazhuk\Favro\Api\Api;
 use seregazhuk\Favro\Favro;
+use seregazhuk\Favro\Api\Api;
 
 class FavroTest extends \PHPUnit_Framework_TestCase
 {

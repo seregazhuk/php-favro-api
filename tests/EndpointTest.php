@@ -3,6 +3,7 @@
 namespace seregazhuk\tests;
 
 use GuzzleHttp\Client;
+use Mockery;
 use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
 use seregazhuk\Favro\Contracts\HttpInterface;
@@ -20,8 +21,22 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
 
     public function it_returns_instance_of_http_contract()
     {
-        $endpoint = new Endpoint(new GuzzleHttpAdapter(new Client()));
+        $endpoint = new Endpoint($this->createHttpMock());
 
         $this->assertInstanceOf(HttpInterface::class, $endpoint->getHttp());
     }
+
+    /**
+     * @return Mockery\MockInterface|HttpInterface
+     */
+    protected function createHttpMock()
+    {
+        return Mockery::mock(GuzzleHttpAdapter::class);
+    }
+
+    protected function tearDown()
+    {
+        Mockery::close();
+    }
+    
 }

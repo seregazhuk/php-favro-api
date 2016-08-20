@@ -68,4 +68,12 @@ class Api
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getOrganizationId()
+    {
+        return $this->organizationId;
+    }
 }

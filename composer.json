@@ -21,7 +21,8 @@
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "codeclimate/php-test-reporter": "dev-master"
     },
     "autoload": {
         "psr-4": {
