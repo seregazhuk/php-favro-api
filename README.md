@@ -132,3 +132,8 @@ $result = $favro->widgets->create($attributes);
 ```php
 $result = $favro->widgets->update(
 ```
+
+## How can I thank you?
+Why not star the github repo? I'd love the attention!
+
+Thanks! 
