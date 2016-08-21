@@ -16,7 +16,7 @@ trait CrudEndpoint
             ->post(
                 $this->makeRequestUrl(),
                 $attributes,
-                ['organizationId' => $this->organizationId]
+                $this->getHeaders()
             );
     }
 
@@ -32,7 +32,7 @@ trait CrudEndpoint
             ->put(
                 $this->makeRequestUrl($itemId),
                 $attributes,
-                ['organizationId' => $this->organizationId]
+                $this->getHeaders()
             );
     }
 
@@ -46,7 +46,7 @@ trait CrudEndpoint
             ->getHttp()
             ->delete(
                 $this->makeRequestUrl($itemId),
-                ['organizationId' => $this->organizationId]
+                $this->getHeaders()
             );
     }
 }
