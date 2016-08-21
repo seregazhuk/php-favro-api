@@ -19,6 +19,7 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($endpoint->isMethodAllowed('unknownMethod'));
     }
 
+    /** @test */
     public function it_returns_instance_of_http_contract()
     {
         $endpoint = new Endpoint($this->createHttpMock());
