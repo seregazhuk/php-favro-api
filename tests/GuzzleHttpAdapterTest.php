@@ -14,12 +14,12 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
     {
         $baseUrl = 'http://www.example.com';
 
-        $http = $this->createHttp()
+        $client = $this->createClient()
             ->shouldReceive('setBaseUrl')
             ->with($baseUrl)
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($http);
+        $adapter = new GuzzleHttpAdapter($client);
         $adapter->setBaseUrl($baseUrl);
     }
 
@@ -31,7 +31,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $headers = ['header1' => 'test'];
 
 
-        $http = $this->createHttp()
+        $client = $this->createClient()
             ->shouldReceive('get')
             ->with(
                 $uri  .'?' . http_build_query($params),
@@ -40,7 +40,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($http);
+        $adapter = new GuzzleHttpAdapter($client);
         $adapter->get($uri, $params, $headers);
     }
 
@@ -52,7 +52,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $headers = ['header1' => 'test'];
 
 
-        $http = $this->createHttp()
+        $client = $this->createClient()
             ->shouldReceive('post')
             ->with(
                 $uri,
@@ -61,7 +61,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($http);
+        $adapter = new GuzzleHttpAdapter($client);
         $adapter->post($uri, $body, $headers);
     }
 
@@ -73,7 +73,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $headers = ['header1' => 'test'];
 
 
-        $http = $this->createHttp()
+        $client = $this->createClient()
             ->shouldReceive('put')
             ->with(
                 $uri,
@@ -82,16 +82,8 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($http);
+        $adapter = new GuzzleHttpAdapter($client);
         $adapter->put($uri, $body, $headers);
-    }
-
-    /**
-     * @return \Mockery\MockInterface | ClientInterface
-     */
-    protected function createHttp()
-    {
-        return \Mockery::mock(ClientInterface::class);
     }
 
     /** @test */
@@ -101,14 +93,22 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $headers = ['header1' => 'test'];
 
 
-        $http = $this->createHttp()
+        $client = $this->createClient()
             ->shouldReceive('delete')
             ->with($uri, ['headers' => $headers])
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($http);
+        $adapter = new GuzzleHttpAdapter($client);
         $adapter->delete($uri, $headers);
+    }
+
+    /**
+     * @return \Mockery\MockInterface | ClientInterface
+     */
+    protected function createClient()
+    {
+        return \Mockery::mock(ClientInterface::class);
     }
 
     protected function tearDown()
