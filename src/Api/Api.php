@@ -49,7 +49,7 @@ class Api
      */
     public function __get($endpoint)
     {
-        $endpoint = $this->endpointsContainer->resolveEndpoint($endpoint);
+        $endpoint = $this->endpointsContainer->resolve($endpoint);
 
         if (method_exists($endpoint, 'setOrganizationId')) {
             $endpoint->setOrganizationId($this->organizationId);

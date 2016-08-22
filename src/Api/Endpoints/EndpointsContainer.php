@@ -32,7 +32,7 @@ class EndpointsContainer
      * @param string $endpoint
      * @return Endpoint
      */
-    public function resolveEndpoint($endpoint)
+    public function resolve($endpoint)
     {
         $endpoint = strtolower($endpoint);
 
