@@ -78,9 +78,9 @@ The response will be an array of users:
 
 [Get a user](https://favro.com/developer/#get-a-user):
 
-Query Parameters: 
+Arguments: 
 
-| Parameter | Type | Description |
+| Argument | Type | Description |
 | --- | --- | --- |
 |userId|string|The id of the user to be retrieved.|
 
@@ -103,20 +103,141 @@ The response returns a user object:
 ```php
 $result = $favro->organizations->getAll();
 ```
+The response will be an array of organizations:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+            "organizationId" : "67973f72db34592d8fc96c48",
+            "name" : "My organization",
+            "sharedToUsers": [
+                [
+                    "userId" : "fB6bJr5TbaKLiofns",
+                    "role" : "administrator",
+                    "joinDate" : "2016-02-10T14:25:58.745Z"
+                ]
+            ]
+        ]
+    ]
+]
+```
 
 [Get an organization](https://favro.com/developer/#get-an-organization):
+
+Arguments: 
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|organizationId|string|The id of the organization to be retrieved.|
+
 ```php
 $result = $favro->organizations->getById($ogranizationId);
 ```
 
+The response returns an organization object:
+
+```php
+[
+    "organizationId" : "67973f72db34592d8fc96c48",
+    "name" : "My organization",
+    "sharedToUsers": [
+        [
+            "userId" : "fB6bJr5TbaKLiofns",
+            "role" : "administrator",
+            "joinDate" : "2016-02-10T14:25:58.745Z"
+        ]
+    ]
+]
+```
+
 [Create an organization](https://favro.com/developer/#create-an-organization):
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the organization.|
+|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
+|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+
 ```php
 $result = $favro->organizations->create($attributes);
 ```
 
+The response will be the created organization:
+
+```php
+[
+    "organizationId" : "67973f72db34592d8fc96c48",
+    "name" : "My organization",
+    "sharedToUsers": [
+        [
+            "userId" : "fB6bJr5TbaKLiofns",
+            "role" : "administrator",
+            "joinDate" : "2016-02-10T14:25:58.745Z"
+        ]
+    ]
+]
+```
+
 [Update an organization](https://favro.com/developer/#update-an-organization):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|organizationId|string|The id of the organization to update.|
+|attributes|array|Array of attributes to be updated.|
+
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the organization.|
+|members|array|Update user roles in the organization. See below for a description of a user share object.|
+|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
+|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+
 ```php
 $result = $favro->organizations->update($organizationId, $attributes);
+```
+
+The response will be the updated organization:
+
+```php
+[
+        "organizationId" : "67973f72db34592d8fc96c48",
+        "name" : "My organization",
+        "sharedToUsers": [
+            [
+                "userId" : "fB6bJr5TbaKLiofns",
+                "role" : "administrator",
+                "joinDate" : "2016-02-10T14:25:58.745Z"
+            ]
+        ]
+]
 ```
 
 ## Collections
