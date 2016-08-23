@@ -58,9 +58,43 @@ $result = $favro->collections->getAll();
 $result = $favro->users->getAll();
 ```
 
+The response will be an array of users:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+            "userId": "67973f72db34592d8fc96c48",
+            "name": "Favro user",
+            "email": "user@favro.com"
+        ]
+    ]
+]
+```
+
 [Get a user](https://favro.com/developer/#get-a-user):
+
+Query Parameters: 
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+|userId|string|The id of the user to be retrieved.|
+
 ```php
 $result = $favro->users->getById($userId);
+```
+The response returns a user object:
+
+```php
+[
+    "userId": "67973f72db34592d8fc96c48",
+    "name": "Favro user",
+    "email": "user@favro.com"
+]
 ```
 
 ## Organizations
