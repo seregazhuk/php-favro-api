@@ -247,22 +247,172 @@ The response will be the updated organization:
 $result = $favro->collections->getAll();
 ```
 
+The response will be a paginated list of collections:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [      
+            "collectionId": "67973f72db34592d8fc96c48",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "name": "My collection",
+            "sharedToUsers": [
+                [
+                    "userId": "ff440e8f358c08513a86c8d6",
+                    "role": "admin"
+                ]
+            ],
+            "publicSharing": "users",
+            "background": "purple",
+            "archived": false,
+            "shareWidgetsByDefault": true
+        ]
+    ]
+]
+```
+
 [Get an collection](https://favro.com/developer/#get-a-collection):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|collectionId|string|The id of the collection to be retrieved.|
+
 ```php
 $result = $favro->collections->getById($collectionId);
 ```
 
+The response returns a collection object:
+```
+[
+    "collectionId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "name": "My collection",
+    "sharedToUsers": [
+        [
+            "userId": "ff440e8f358c08513a86c8d6",
+            "role": "admin"
+        ]
+    ],
+    "publicSharing": "users",
+    "background": "purple",
+    "archived": false,
+    "shareWidgetsByDefault": true
+]
+```
+
 [Create a collection](https://favro.com/developer/#create-a-collection):
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the collection. Required.|
+|starPage|boolean|Star the collection for authorized user. Defaults to false.|
+|shareWidgetsByDefault|boolean|Share widgets to the collection members by default. Defaults to true.|
+|publicSharing|string|Public share role for the collection. Refer to [collection public sharing](https://favro.com/developer/#collections).|
+|background|string|The background color of the collection. Refer to [collection background](https://favro.com/developer/#collection-background).|
+|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
+|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+
 ```php
 $result = $favro->collections->create($attributes);
 ```
 
+The response will be the created collection:
+```
+[
+    "collectionId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "name": "My collection",
+    "sharedToUsers": [
+        [
+            "userId": "ff440e8f358c08513a86c8d6",
+            "role": "admin"
+        ]
+    ],
+    "publicSharing": "users",
+    "background": "purple",
+    "archived": false,
+    "shareWidgetsByDefault": true
+]
+```
+
 [Update a collection](https://favro.com/developer/#update-a-collection):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|collectionId|string|The id of the collection to update.|
+|attributes|array|Array of attributes to be updated.|
+
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the collection. Required.|
+|starPage|boolean|Star the collection for authorized user. Defaults to false.|
+|shareWidgetsByDefault|boolean|Share widgets to the collection members by default. Defaults to true.|
+|publicSharing|string|Public share role for the collection. Refer to [collection public sharing](https://favro.com/developer/#collections).|
+|background|string|The background color of the collection. Refer to [collection background](https://favro.com/developer/#collection-background).|
+|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
+|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+
 ```php
 $result = $favro->collections->update($collectionId, $attributes);
 ```
 
+The response will be the updated collection:
+
+```php
+[
+    "collectionId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "name": "My collection",
+    "sharedToUsers": [
+        [
+            "userId": "ff440e8f358c08513a86c8d6",
+            "role": "admin"
+        ]
+    ],
+    "publicSharing": "users",
+    "background": "purple",
+    "archived": false,
+    "shareWidgetsByDefault": true
+]
+```
+
 [Delete a collection](https://favro.com/developer/#delete-a-collection):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|collectionId|string|The id of the collection to be deleted.|
+
 ```php
 $result = $favro->collections->delete($collectionId);
 ```
