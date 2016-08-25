@@ -32,23 +32,34 @@ composer require "seregazhuk/favro-api:*"
 
 ## Quick Start
 
+First of all you need to select your current organization, because nearly all
+API requests require an organizationId. There are two ways to set your current
+organization: by name or by Id:
+
 ```php 
 // You may need to amend this path to locate composer's autoloader
 require './vendor/autoload.php';
 
 use seregazhuk\Favro\Favro;
 
-$favro = Favro::create('seregazhuk88@gmail.com', 'Eikah1ei');
+$favro = Favro::create('test@example.com', 'test');
 
+// set your organization
+$favro->setOrganization("My Organization");
+
+// get all collections
+$result = $favro->collections->getAll();
+```
+
+You can get all your organization and then set it by id:
+
+```php
 // get your organizations
 $result = $favro->organizations->getAll();
 $organizations = $result['entities'];
 
-// select first organization
+// select the first organization
 $favro->setOrganization($organizations[0]['organizationId']);
-
-// get all collections
-$result = $favro->collections->getAll();
 ```
 
 ## Users
