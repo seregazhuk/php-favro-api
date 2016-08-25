@@ -11,7 +11,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     {
         $organizationId = '123456789';
         $api = Favro::create('login', 'password');
-        $api->setOrganization($organizationId);
+        $api->setOrganizationId($organizationId);
 
         $this->assertEquals($organizationId, $api->getOrganizationId());
     }

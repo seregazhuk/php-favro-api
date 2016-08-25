@@ -34,7 +34,7 @@ composer require "seregazhuk/favro-api:*"
 
 First of all you need to select your current organization, because nearly all
 API requests require an organizationId. There are two ways to set your current
-organization: by name or by Id:
+organization: by name or by Id.
 
 ```php 
 // You may need to amend this path to locate composer's autoloader
