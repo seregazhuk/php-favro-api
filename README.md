@@ -20,6 +20,7 @@
 - [Organizations](#organizations)
 - [Collections](#collections)
 - [Widgets](#widgets)
+- [Columns](#columns)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -27,14 +28,14 @@ Library requires CURL extension and PHP 5.5.9 or above.
 ## Installation
 Via composer:
 ```
-composer require "seregazhuk/favro-api:*"
+composer require seregazhuk/favro-api
 ```
 
 ## Quick Start
 
 First of all you need to select your current organization, because nearly all
-API requests require an organizationId. There are two ways to set your current
-organization: by name or by Id.
+API requests require the organizationId of the organization that these call are being 
+made against. You can set your current organization in two ways: by name or by Id.
 
 ```php 
 // You may need to amend this path to locate composer's autoloader
@@ -254,6 +255,7 @@ The response will be the updated organization:
 ## Collections
 
 [Get all collections](https://favro.com/developer/#get-all-collections):
+
 ```php
 $result = $favro->collections->getAll();
 ```
@@ -326,9 +328,9 @@ Argument `$attributes` is an array and contains the following values:
 |name|string|The name of the collection. Required.|
 |starPage|boolean|Star the collection for authorized user. Defaults to false.|
 |shareWidgetsByDefault|boolean|Share widgets to the collection members by default. Defaults to true.|
-|publicSharing|string|Public share role for the collection. Refer to [collection public sharing](https://favro.com/developer/#collections).|
+|publicSharing|string|Public share role for the collection. Refer to [collection public sharing](https://favro.com/developer/#collection-public-sharing).|
 |background|string|The background color of the collection. Refer to [collection background](https://favro.com/developer/#collection-background).|
-|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+|shareToUsers|array|The users who will be invited to the collection. See below for a description of a user share object.|
 
 `shareToUsers` is also an array with the following structure:
 
@@ -336,8 +338,8 @@ Argument `$attributes` is an array and contains the following values:
 | --- | --- | --- |
 |userId|string|The userId of the existing user. Required if email is not provided.|
 |email|string|Email. Required if userId is not provided.|
-|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
-|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+|role|string|The role of the user in the collection. Refer to [collection roles](https://favro.com/developer/#collection-roles). Required.|
+|delete|boolean|Removes user from the collection if value equals to true. Optional.|
 
 ```php
 $result = $favro->collections->create($attributes);
@@ -381,7 +383,7 @@ Arguments:
 |shareWidgetsByDefault|boolean|Share widgets to the collection members by default. Defaults to true.|
 |publicSharing|string|Public share role for the collection. Refer to [collection public sharing](https://favro.com/developer/#collections).|
 |background|string|The background color of the collection. Refer to [collection background](https://favro.com/developer/#collection-background).|
-|shareToUsers|array|The users who will be invited to the organization. See below for a description of a user share object.|
+|shareToUsers|array|The users who will be invited to the collection. See below for a description of a user share object.|
 
 `shareToUsers` is also an array with the following structure:
 
@@ -389,8 +391,8 @@ Arguments:
 | --- | --- | --- |
 |userId|string|The userId of the existing user. Required if email is not provided.|
 |email|string|Email. Required if userId is not provided.|
-|role|string|The role of the user in the organization. Refer to [organization roles](https://favro.com/developer/#organization-roles). Required.|
-|delete|boolean|Removes user from the organization if value equals to true. Optional.|
+|role|string|The role of the user in the collection. Refer to [collection roles](https://favro.com/developer/#collection-roles). Required.|
+|delete|boolean|Removes user from the collection if value equals to true. Optional.|
 
 ```php
 $result = $favro->collections->update($collectionId, $attributes);
@@ -429,25 +431,211 @@ $result = $favro->collections->delete($collectionId);
 ```
 
 ## Widgets
+
 [Get all widgets](https://favro.com/developer/#get-all-widgets):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|collectionId|string|The id of the collection to filter by. Optional.|
+|includePublic|boolean|Include publicly shared widgets. Defaults to false.|
+
 ```php
 $result = $favro->widgets->getAll();
 ```
 
-[Get a widget](https://favro.com/developer/#get-a-widget):
+The response will be a paginated array of widgets:
+
 ```php
-$result = $favro->widgets->getById($widgetId);
+[
+     "limit": 100,
+     "page": 0,
+     "pages": 1,
+     "requestId": "8cc57b1d8a218fa639c8a0fa",
+     "entities": [
+        [
+             "widgetCommonId": "67973f72db34592d8fc96c48",
+             "organizationId": "zk4CJpg5uozhL4R2W",
+             "collectionIds": [
+                 "8cc57b1d8a218fa639c8a0fa"
+             ],
+             "name": "This is a widget",
+             "type": "board",
+             "publicSharing": "collection",
+             "color": "purple",
+             "sharedToUsers": [
+                [
+                    "userId": "tXfWe3MXQqhnnTRtw",
+                    "role": "view"
+                ]
+             ]
+         ]
+     ]
+ ]
+```
+
+[Get a widget](https://favro.com/developer/#get-a-widget):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The id of the widget to be retrieved.|
+
+```php
+$result = $favro->widgets->getById($widgetCommonId);
+```
+
+The response returns a widget object:
+
+```php
+[
+    "widgetCommonId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "collectionIds": [
+        "8cc57b1d8a218fa639c8a0fa"
+    ],
+    "name": "This is a widget",
+    "type": "board",
+    "publicSharing": "collection",
+    "color": "purple",
+    "sharedToUsers": [
+        [
+            "userId": "tXfWe3MXQqhnnTRtw",
+            "role": "view"
+        ]
+    ]
+]
 ```
 
 [Create a widget](https://favro.com/developer/#create-a-widget):
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|collectionId|string|The collectionId of the collection to create the widget in. Required.|
+|name|string|The name of the widget. Required.|
+|type|string|The type of widget to create. Refer to [widget types](https://favro.com/developer/#widget-types). Required.|
+|color|string|The color of the widget icon. Refer to [widget colors](https://favro.com/developer/#widget-colors).|
+|publicSharing|string|The public sharing level of the widget. Refer to [widget public sharing](https://favro.com/developer/#widget-public-sharing).|
+|shareToUsers|array|The list of users to share the widget to. See below for a description of a user share object.|
+
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user on the widget. Refer to [widget roles](https://favro.com/developer/#widget-roles). Required.|
+|delete|boolean|Removes user from the widget if value equals to true. Optional.|
+
 ```php
 $result = $favro->widgets->create($attributes); 
 ```
 
-[Update a widget](https://favro.com/developer/#update-a-widget):
+The response will be the created widget:
+
 ```php
-$result = $favro->widgets->update(
+[
+    "widgetCommonId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "collectionIds": [
+        "8cc57b1d8a218fa639c8a0fa"
+    ],
+    "name": "This is a widget",
+    "type": "board",
+    "publicSharing": "collection",
+    "color": "purple",
+    "sharedToUsers": [
+        [
+            "userId": "tXfWe3MXQqhnnTRtw",
+            "role": "view"
+        ]
+    ]
+]
 ```
+
+[Update a widget](https://favro.com/developer/#update-a-widget):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The common id of the widget to update. Required|
+|attributes|array|Array of attributes to be updated.|
+
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the widget. Required.|
+|archive|boolean|Archive or unarchive widget. Requires collectionId to be specified in the request.|
+|collectionId|string|The id of the collection where widget will be archived. Required if archive is included in the request.|
+|color|string|The color of widget label. Look at [widget colors](https://favro.com/developer/#widget-colors).|
+|publicSharing|number|The public sharing level of the widget. Refer to [widget public sharing](https://favro.com/developer/#widget-public-sharing).|
+|members|array|Update user roles on the widget. See below for a description of a user share object.|
+|shareToUsers|array|The list of users to share the widget to. See below for a description of a user share object.|
+
+
+`shareToUsers` is also an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|userId|string|The userId of the existing user. Required if email is not provided.|
+|email|string|Email. Required if userId is not provided.|
+|role|string|The role of the user on the widget. Refer to [widget roles](https://favro.com/developer/#widget-roles). Required.|
+|delete|boolean|Removes user from the widget if value equals to true. Optional.|
+
+```php
+$result = $favro->widgets->update($widgetCommonId, $attributes);
+```
+
+The response will be the updated widget:
+
+```php
+[
+        "widgetCommonId": "67973f72db34592d8fc96c48",
+        "organizationId": "zk4CJpg5uozhL4R2W",
+        "collectionIds": [
+            "8cc57b1d8a218fa639c8a0fa"
+        ],
+        "name": "This is a widget",
+        "type": "board",
+        "publicSharing": "collection",
+        "color": "purple",
+        "sharedToUsers": [
+            [
+                "userId": "tXfWe3MXQqhnnTRtw",
+                "role": "view"
+            ]
+        ]
+]
+```
+
+[Delete a widget](https://favro.com/developer/#delete-a-widget):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The common id of the widget to be deleted. Required.|
+|collectionId|string|The id of collection where widget will be deleted. Optional. If ommitted all instances of the widget will be deleted.|
+
+```php
+$favro->widgets->delete($widgetCommonId);
+
+// or
+
+$favro->widgets->delete($widgetCommonId, $collectionId);
+```
+
+## Columns
+
+
 
 ## How can I thank you?
 Why not star the github repo? I'd love the attention!

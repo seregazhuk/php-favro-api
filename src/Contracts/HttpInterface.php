@@ -30,10 +30,11 @@ interface HttpInterface
 
     /**
      * @param string $uri
+     * @param array $body
      * @param array $headers
      * @return mixed
      */
-    public function delete($uri, $headers = []);
+    public function delete($uri, $body = [], $headers = []);
 
     /**
      * @param string $url

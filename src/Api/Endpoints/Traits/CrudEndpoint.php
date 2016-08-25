@@ -46,6 +46,7 @@ trait CrudEndpoint
             ->getHttp()
             ->delete(
                 $this->makeRequestUrl($itemId),
+                [],
                 $this->getHeaders()
             );
     }
