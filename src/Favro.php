@@ -4,7 +4,6 @@ namespace seregazhuk\Favro;
 
 use GuzzleHttp\Client;
 use seregazhuk\Favro\Api\Api;
-use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
 
 class Favro
@@ -25,11 +24,11 @@ class Favro
     /**
      * @param string $login
      * @param string $password
-     * @return GuzzleHttpAdapter
+     * @return GuzzleHttpClient
      */
     protected static function getHttpInterfaceAdapter($login, $password)
     {
-        return new GuzzleHttpAdapter(
+        return new GuzzleHttpClient(
             new Client(['auth' => [$login, $password]])
         );
     }

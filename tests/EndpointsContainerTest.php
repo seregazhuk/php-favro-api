@@ -3,8 +3,8 @@
 namespace seregazhuk\tests;
 
 use GuzzleHttp\Client;
+use seregazhuk\Favro\GuzzleHttpClient;
 use seregazhuk\Favro\Api\Endpoints\Users;
-use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
 
 class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
@@ -18,7 +18,7 @@ class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \seregazhuk\Favro\Exceptions\BadEndpointException
+     * @expectedException \seregazhuk\Favro\Exceptions\WrongEndpoint
      */
     public function it_throws_exception_when_resolving_non_existing_endpoint()
     {
@@ -31,6 +31,6 @@ class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
      */
     protected function createContainer()
     {
-        return new EndpointsContainer(new GuzzleHttpAdapter(new Client()));
+        return new EndpointsContainer(new GuzzleHttpClient(new Client()));
     }
 }

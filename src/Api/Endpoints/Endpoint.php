@@ -2,7 +2,7 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Contracts\HttpInterface;
+use seregazhuk\Favro\Contracts\HttpClient;
 
 class Endpoint
 {
@@ -28,14 +28,14 @@ class Endpoint
     protected $headers = [];
 
     /**
-     * @var HttpInterface
+     * @var HttpClient
      */
     protected $http;
 
     /**
-     * @param HttpInterface $http
+     * @param HttpClient $http
      */
-    public function __construct(HttpInterface $http)
+    public function __construct(HttpClient $http)
     {
         $this->http = $http;
     }
@@ -59,7 +59,7 @@ class Endpoint
     }
 
     /**
-     * @return HttpInterface
+     * @return HttpClient
      */
     public function getHttp()
     {

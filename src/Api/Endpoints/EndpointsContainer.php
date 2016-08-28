@@ -3,8 +3,8 @@
 namespace seregazhuk\Favro\Api\Endpoints;
 
 use ReflectionClass;
-use seregazhuk\Favro\Contracts\HttpInterface;
-use seregazhuk\Favro\Exceptions\BadEndpointException;
+use seregazhuk\Favro\Contracts\HttpClient;
+use seregazhuk\Favro\Exceptions\WrongEndpoint;
 
 class EndpointsContainer
 {
@@ -21,9 +21,9 @@ class EndpointsContainer
     protected $endpoints = [];
 
     /**
-     * @param HttpInterface $http
+     * @param HttpClient $http
      */
-    public function __construct(HttpInterface $http)
+    public function __construct(HttpClient $http)
     {
         $this->http = $http;
     }
@@ -46,14 +46,14 @@ class EndpointsContainer
 
     /**
      * @param $endpoint
-     * @throws BadEndpointException
+     * @throws WrongEndpoint
      */
     protected function addProvider($endpoint)
     {
         $className = self::ENDPOINTS_NAMESPACE . ucfirst($endpoint);
 
         if (!class_exists($className)) {
-            throw new BadEndpointException("Endpoint $className not found.");
+            throw new WrongEndpoint("Endpoint $className not found.");
         }
 
         $this->endpoints[$endpoint] = $this->buildEndpoint($className);

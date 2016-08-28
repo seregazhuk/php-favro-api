@@ -2,10 +2,10 @@
 
 namespace seregazhuk\tests;
 
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Response;
 use Mockery;
-use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\ClientInterface;
+use seregazhuk\Favro\GuzzleHttpClient;
 
 class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->with($baseUrl)
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($client);
+        $adapter = new GuzzleHttpClient($client);
         $adapter->setBaseUrl($baseUrl);
     }
 
@@ -40,7 +40,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($client);
+        $adapter = new GuzzleHttpClient($client);
         $adapter->get($uri, $params, $headers);
     }
 
@@ -61,7 +61,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($client);
+        $adapter = new GuzzleHttpClient($client);
         $adapter->post($uri, $body, $headers);
     }
 
@@ -82,7 +82,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($client);
+        $adapter = new GuzzleHttpClient($client);
         $adapter->put($uri, $body, $headers);
     }
 
@@ -99,7 +99,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
             ->andReturn(new Response([]))
             ->getMock();
 
-        $adapter = new GuzzleHttpAdapter($client);
+        $adapter = new GuzzleHttpClient($client);
         $adapter->delete($uri, [], $headers);
     }
 

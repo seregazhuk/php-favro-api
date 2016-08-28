@@ -2,7 +2,7 @@
 
 namespace seregazhuk\Favro\Contracts;
 
-interface HttpInterface
+interface HttpClient
 {
     /**
      * @param $uri

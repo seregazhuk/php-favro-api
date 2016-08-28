@@ -1,12 +1,12 @@
 <?php
 
-namespace seregazhuk\Favro\Adapters;
+namespace seregazhuk\Favro;
 
 use GuzzleHttp\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
-use seregazhuk\Favro\Contracts\HttpInterface;
+use seregazhuk\Favro\Contracts\HttpClient;
 
-class GuzzleHttpAdapter implements HttpInterface
+class GuzzleHttpClient implements HttpClient
 {
     /**
      * @var ClientInterface

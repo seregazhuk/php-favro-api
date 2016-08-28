@@ -2,13 +2,13 @@
 
 namespace seregazhuk\Favro\Api\Endpoints\Traits;
 
-use seregazhuk\Favro\Contracts\HttpInterface;
+use seregazhuk\Favro\Contracts\HttpClient;
 
 /**
  * Class CrudEndpoint
  * @package seregazhuk\Favro\Api\Endpoints\Traits
  *
- * @method HttpInterface getHttp
+ * @method HttpClient getHttp
  */
 trait CrudEndpoint
 {

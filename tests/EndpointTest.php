@@ -4,16 +4,16 @@ namespace seregazhuk\tests;
 
 use GuzzleHttp\Client;
 use Mockery;
-use seregazhuk\Favro\Adapters\GuzzleHttpAdapter;
+use seregazhuk\Favro\GuzzleHttpClient;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
-use seregazhuk\Favro\Contracts\HttpInterface;
+use seregazhuk\Favro\Contracts\HttpClient;
 
 class EndpointTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
     public function it_should_check_if_method_is_allowed_to_call()
     {
-        $endpoint = new Endpoint(new GuzzleHttpAdapter(new Client()));
+        $endpoint = new Endpoint(new GuzzleHttpClient(new Client()));
         $this->assertTrue($endpoint->isMethodAllowed('getById'));
 
         $this->assertFalse($endpoint->isMethodAllowed('unknownMethod'));
@@ -24,15 +24,15 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     {
         $endpoint = new Endpoint($this->createHttpMock());
 
-        $this->assertInstanceOf(HttpInterface::class, $endpoint->getHttp());
+        $this->assertInstanceOf(HttpClient::class, $endpoint->getHttp());
     }
 
     /**
-     * @return Mockery\MockInterface|HttpInterface
+     * @return Mockery\MockInterface|HttpClient
      */
     protected function createHttpMock()
     {
-        return Mockery::mock(GuzzleHttpAdapter::class);
+        return Mockery::mock(GuzzleHttpClient::class);
     }
 
     protected function tearDown()
