@@ -95,12 +95,12 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
 
         $client = $this->createClient()
             ->shouldReceive('delete')
-            ->with($uri, ['headers' => $headers])
+            ->with($uri, ['headers' => $headers, 'form_params' => []])
             ->andReturn(new Response([]))
             ->getMock();
 
         $adapter = new GuzzleHttpAdapter($client);
-        $adapter->delete($uri, $headers);
+        $adapter->delete($uri, [], $headers);
     }
 
     /**
