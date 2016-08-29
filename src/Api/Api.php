@@ -59,16 +59,13 @@ class Api
     }
 
     /**
-     * @param string $organization
+     * @param $organizationName
      * @return $this
      */
-    public function setOrganization($organization)
+    public function setOrganization($organizationName)
     {
-        $organizations = $this->organizations->getAll();
-        foreach ($organizations['entities'] as $entity) {
-            if($entity['name'] == $organization) {
-                $this->organizationId = $entity['organizationId'];
-            }
+        if($organization = $this->getOrganizationByName($organizationName)) {
+            $this->setOrganizationId($organization['organizationId']);
         }
 
         return $this;
@@ -92,5 +89,22 @@ class Api
     public function getOrganizationId()
     {
         return $this->organizationId;
+    }
+
+    /**
+     * @param $organization
+     * @return bool|array
+     */
+    protected function getOrganizationByName($organization)
+    {
+        $organizations = $this->organizations->getAll();
+
+        foreach ($organizations['entities'] as $entity) {
+            if ($entity['name'] == $organization) {
+                return $organization;
+            }
+        }
+
+        return false;
     }
 }
