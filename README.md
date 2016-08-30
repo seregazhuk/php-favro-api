@@ -931,6 +931,126 @@ The response returns an array of cardIds for the cards that were deleted.
 ]
 ```
 
+## Tags
+
+[Get all tags](https://favro.com/developer/#get-all-tags)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the tag to filter by. Optional.|
+|color|string|The color of the tag to filter by. Optional.
+
+```php
+$result = $favro->tags->getAll($params);
+```
+
+The response will be a paginated array of tags:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+            "tagId": "67973f72db34592d8fc96c48",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "name": "My tag",
+            "color": "purple"
+        ]
+    ]
+]
+```
+
+[Get a tag](https://favro.com/developer/#get-a-tag)
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|tagId|string|The id of the tag to be retrieved.|
+
+```php
+$result = $favro->tags->get($tagId);
+```
+
+The response returns a tag object:
+
+```php
+[
+        "tagId": "67973f72db34592d8fc96c48",
+        "organizationId": "zk4CJpg5uozhL4R2W",
+        "name": "My tag",
+        "color": "purple"
+]
+```
+
+[Create a tag](https://favro.com/developer/#create-a-tag)
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|cardCommonId|string|The common id of the card to post the tag on. Required.|
+|name|string|The name of the tag. Required.|
+|color|string|The color of the tag. If not specified, color will be selected randomly. Refer to [tag colors](https://favro.com/developer/#tags).|
+
+```php
+$result = $favro->tags->create($attributes); 
+```
+
+The response will be the created tag:
+
+```php
+[
+    "tagId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "name": "My tag",
+    "color": "purple"
+]
+```
+
+[Update a tag](https://favro.com/developer/#update-a-tag)
+
+ Argument | Type | Description |
+| --- | --- | --- |
+|tagId|string|The id of the tag to update.|
+|attributes|array|Array of attributes to be updated.|
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the tag to edit. Optional.|
+|color|string|The color of the tag to edit. Optional. Refer to [tag colors](https://favro.com/developer/#tags).|
+
+```php
+$result = $favro->tags->update($tagId, $attributes);
+```
+
+The response will be the updated tag:
+
+```php
+[
+     "tagId": "67973f72db34592d8fc96c48",
+     "organizationId": "zk4CJpg5uozhL4R2W",
+     "name": "My tag",
+     "color": "purple"
+]
+```
+
+[Delete a tag](https://favro.com/developer/#delete-a-tag)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|tagId|string|	The id of the tag to be deleted. Required.|
+
+```php
+$result = $favro->tags->delete($tagId);
+```
 
 ## How can I thank you?
 Why not star the github repo? I'd love the attention!
