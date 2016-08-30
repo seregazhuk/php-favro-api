@@ -761,7 +761,174 @@ Arguments:
 |columnId|string|The id of the column to be deleted. Required.|
 
 ```php
-$result = $favro->columns->delete($columnId;
+$result = $favro->columns->delete($columnId);
+```
+
+## Cards
+
+[Get Get all cards](https://favro.com/developer/#get-all-cards)
+
+In order to use this endpoint you must specify either todoList or one of cardCommonId, widgetCommonId or collectionId.
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|todoList|boolean|Return cards from todolist only. Defaults to false.|
+|cardCommonId|string|The common id of the card to filter by.|
+|widgetCommonId|string|The common id of the widget to filter by.|
+|collectionId|string|The id of the collection to filter by.|
+|unique|boolean|If true, return unique cards only. Defaults to false.|
+
+```php
+$result = $favro->cards->getAll($params);
+```
+
+The response will be a paginated array of cards:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+        "cardId": "67973f72db34592d8fc96c48",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "widgetCommonId": "ff440e8f358c08513a86c8d6",
+            "columnId": "b4d8c6283d9d58f9a39108e7",
+            "name": "This is a card"
+        ]
+    ]
+]
+```
+
+[Get a card](https://favro.com/developer/#get-a-card)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardId|string|The id of the card to be retrieved. Required.|
+
+```php
+$result = $favro->cards->get($cardId);
+```
+
+The response returns a card object:
+
+```php
+[
+    "cardId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "columnId": "b4d8c6283d9d58f9a39108e7",
+    "name": "This is a card"
+]
+```
+
+[Create a card](https://favro.com/developer/#create-a-card)
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The widgetCommonId to create the card on. One of organizationId, widgetCommonId is required. If not set, the card will be created in the user’s todo list.|
+|laneId|string|The laneId to create the card in. This is only applicable if creating the card on a widget that has lanes enabled. Optional.|
+|columnId|string|The columnId to create the card in. It must belong to the widget specified in the widgetCommonId parameter. WidgetCommonId is required if this parameter is set.|
+|parentCardId|string|If creating a card on a backlog widget, it is possible to create this card as a child of the card specified by this parameter. Optional.|
+|name|string|The name of the card. Required.|
+|detailedDescription|string|The detailed description of the card. Supports [formatting](https://favro.com/developer/#card-formatting).|
+|assignmentIds|array|The list of assignments (array of userIds). Optional.|
+|tags|array|The list of tag names or [card tags](https://favro.com/developer/#card-tag) that will be added to card. If current tag is not exist in the organization, it will be created.|
+|tagIds|array|The list of tag IDs, that will be added to card.|
+|startDate|string|The start date of card. Format ISO-8601.|
+|dueDate|string|The due date of card. Format ISO-8601.|
+|tasklists|array|The list of card [tasklists](https://favro.com/developer/#card-tasklist).|
+
+```php
+$result = $favro->cards->create($attributes); 
+```
+
+The response will be the created card:
+
+```php
+[
+    "cardId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "columnId": "b4d8c6283d9d58f9a39108e7",
+    "name": "This is a card"
+]
+```
+
+[Update a card](https://favro.com/developer/#update-a-card)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardId|string|The id of the card to update. Required.|
+|attributes|array|Array of attributes to be updated.|
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the card.|
+|detailedDescription|string|The detailed description of the card. Supports [formatting](https://favro.com/developer/#card-formatting).|
+|widgetCommonId|string|The widgetCommonId to commit the card in. Optional.|
+|laneId|string|The laneId to commit the card in. This is only applicable if creating the card on a widget that has lanes enabled. Optional.|
+|columnId|string|The columnId to commit the card in. It must belong to the widget specified in the widgetCommonId parameter. Optional.|
+|parentCardId|string|If commiting a card on a backlog widget, it is possible to create this card as a child of the card specified by this parameter. Optional.|
+|addAssignmentIds|array|The list of assignments, that will be added to card (array of userIds). Optional.|
+|removeAssignmentIds|array|The list of assignments, that will be removed from card (array of userIds). Optional.|
+|addTags|array|The list of tag names or [card tags](https://favro.com/developer/#cards) that will be added to the card. If the tag does not exist in the organization it will be created.|
+|addTagIds|array|A list of tagIds that will be added to card.|
+|removeTags|array|The list of tag names, that will be removed from card.|
+|removeTagIds|array|The list of tag IDs, that will be removed from card.|
+|startDate|string|The start date of card. Format ISO-8601. If *null*, start date will be removed.|
+|dueDate|string|The due date of card. Format ISO-8601. If *null*, due date will be removed.|
+|addTasklists|array|The list of card [tasklists](https://favro.com/developer/#cards), that will be added to card.|
+
+```php
+$result = $favro->cards->update($cardId, $attributes);
+```
+
+The response will be the updated cards:
+
+```php
+[
+    "cardId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "columnId": "b4d8c6283d9d58f9a39108e7",
+    "name": "This is a card"
+]
+```
+
+[Delete a card](https://favro.com/developer/#delete-a-card)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardId|string|The id of card to be deleted. Required.|
+|everywhere|boolean|If true, all copies of card will be deleted too. Defaults to false.|
+
+```php
+$result = $favro->cards->delete($cardId, $everyWhere);
+```
+
+The response returns an array of cardIds for the cards that were deleted.
+
+```php
+[
+    "67973f72db34592d8fc96c48",
+    "67973f72db34592d8fc96c49",
+    "67973f72db34592d8fc96c50"
+]
 ```
 
 

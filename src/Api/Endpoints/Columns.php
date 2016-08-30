@@ -9,7 +9,7 @@ use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 class Columns extends Endpoint
 {
 
-    use BelongsToOrganization, BelongsToWidget, CrudEndpoint;
+    use BelongsToOrganization, CrudEndpoint;
 
     /**
      * @var string
