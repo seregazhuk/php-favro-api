@@ -8,7 +8,7 @@ trait BelongsToWidget {
 	 * @param string $widgetCommonId
 	 * @return mixed
 	 */
-	public function getAllForWidget($widgetCommonId)
+	public function getAll($widgetCommonId)
 	{
 		return parent::getAll(['widgetCommonId'=>$widgetCommonId]);
 	}

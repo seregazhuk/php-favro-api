@@ -635,6 +635,134 @@ $favro->widgets->delete($widgetCommonId, $collectionId);
 
 ## Columns
 
+[Get all columns](https://favro.com/developer/#get-all-columns):
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The common id of the widget to filter by. Required.|
+
+```php
+$result = $favro->columns->getAll($widgetCommonId);
+```
+
+The response will be a paginated array of columns:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+        "columnId": "67973f72db34592d8fc96c48",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "widgetCommonId": "ff440e8f358c08513a86c8d6",
+            "name": "This is a column",
+            "position": 0
+        ]
+    ]
+]
+```
+
+[Get a column](https://favro.com/developer/#get-a-column)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|columnId|string|The id of the column to be retrieved.|
+
+```php
+$result = $favro->columns->getById($columnId);
+```
+
+The response returns a column object:
+
+```php
+[
+    "columnId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "name": "This is a column",
+    "position": 0
+]
+```
+
+[Create a column](https://favro.com/developer/#create-a-column)
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|widgetCommonId|string|The widgetCommonId to create the column on. Required.|
+|name|string|The name of the column. Required.|
+|position|string|The position of the column on the widget. By default the column will be placed at the end of the widget. Optional.|
+
+```php
+$result = $favro->columns->create($attributes); 
+```
+
+The response will be the created column:
+
+```php
+[
+    "columnId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "name": "This is a column",
+    "position": 0
+]
+```
+
+[Update a column](https://favro.com/developer/#update-a-column)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|columnId|string|The id of the column to update.|
+|attributes|array|Array of attributes to be updated.|
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the column.|
+|position|string|The position of the column.|
+
+
+```php
+$result = $favro->columns->update($columnId, $attributes);
+```
+
+The response will be the updated column:
+
+```php
+[
+    "columnId": "67973f72db34592d8fc96c48",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "widgetCommonId": "ff440e8f358c08513a86c8d6",
+    "name": "This is a column",
+    "position": 0
+]
+```
+
+[Delete a column](https://favro.com/developer/#delete-a-column)
+
+Deleting a column will also delete any cards that exist within that column.
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|columnId|string|The id of the column to be deleted. Required.|
+
+```php
+$result = $favro->columns->delete($columnId;
+```
 
 
 ## How can I thank you?
