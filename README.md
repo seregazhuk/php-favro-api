@@ -1093,6 +1093,103 @@ The response will be a paginated array of card tasks:
 
 [Get a task](https://favro.com/developer/#get-a-task)
 
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskId|string|The id of the task to be retrieved.|
+
+```php
+$result = $favro->tasks->get($taskId);
+```
+
+The response returns a task object:
+
+```php
+[
+    "taskId": "67973f72db34592d8fc96c48",
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "name": "This is a task",
+    "completed": false,
+    "position": 0
+]
+```
+
+[Create a task](https://favro.com/developer/#create-a-task)
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|taskListId|string|The task list id to post the task on. Required.|
+|name|string|The name of the task. Required.|
+|position|number|Task position in the task list. Optional.|
+|completed|boolean|Task completion state. Optional.|
+
+```php
+$result = $favro->tasks->create($attributes); 
+```
+
+The response will be the created task:
+
+```php
+[
+    "taskId": "67973f72db34592d8fc96c48",
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "name": "This is a task",
+    "completed": false,
+    "position": 0
+]
+```
+
+[Update a task](https://favro.com/developer/#update-a-task)
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskId|string|The id of the task to update.|
+|attributes|array|Array of attributes to be updated.|
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the task to edit. Optional.|
+|name|string|The name of the task to edit. Optional.|
+|position|string|Task position in the list. Optional.|
+|completed|string|Task completion state. Optional.|
+
+```php
+$result = $favro->tasks->update($taskId, $attributes); 
+```
+
+The response will be the updated task:
+
+```php
+[
+    "taskId": "67973f72db34592d8fc96c48",
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "name": "This is a task",
+    "completed": false,
+    "position": 0
+]
+```
+
+[Delete a task](https://favro.com/developer/#delete-a-task)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskId|string|The id of the task to be deleted. Required.|
+
+```php
+$result = $favro->tasks->delete($taskId);
+```
+
 ## How can I thank you?
 Why not star the github repo? I'd love the attention!
 
