@@ -21,6 +21,9 @@
 - [Collections](#collections)
 - [Widgets](#widgets)
 - [Columns](#columns)
+- [Cards](#cards)
+- [Tags](#tags)
+- [Tasks](#tasks)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -1051,6 +1054,44 @@ Arguments:
 ```php
 $result = $favro->tags->delete($tagId);
 ```
+
+## Tasks
+
+[Get all tasks](https://favro.com/developer/#get-all-tasks)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardCommonId|string|The card common id to filter by. Required.|
+|taskListId|string|The task list id to filter by. Optional.|
+
+```php
+$result = $favro->tasks->getAll($params);
+```
+
+The response will be a paginated array of card tasks:
+
+```php
+[  "limit": 100,
+     "page": 0,
+     "pages": 1,
+     "requestId": "8cc57b1d8a218fa639c8a0fa",
+     "entities": [
+        [
+             "taskId": "67973f72db34592d8fc96c48",
+             "taskListId": "8cc57b1d8a218fa639c8a0fa",
+             "organizationId": "zk4CJpg5uozhL4R2W",
+             "cardCommonId": "tXfWe3MXQqhnnTRtw",
+             "name": "This is a task",
+             "completed": false,
+             "position": 0
+        ]
+     ]
+ ]
+```
+
+[Get a task](https://favro.com/developer/#get-a-task)
 
 ## How can I thank you?
 Why not star the github repo? I'd love the attention!
