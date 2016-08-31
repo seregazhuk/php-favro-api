@@ -77,9 +77,13 @@ class Endpoint
      */
     public function getAll(array $params = [])
     {
-        return $this->getHttp()->get(
-            $this->makeRequestUrl(), $params, $this->getHeaders()
-        );
+        return $this
+            ->getHttp()
+            ->get(
+                $this->makeRequestUrl(),
+                $params,
+                $this->getHeaders()
+            );
     }
 
     /**
@@ -88,9 +92,13 @@ class Endpoint
      */
     public function getById($id)
     {
-        return $this->getHttp()->get(
-            $this->makeRequestUrl($id), [], $this->getHeaders()
-        );
+        return $this
+            ->getHttp()
+            ->get(
+                $this->makeRequestUrl($id),
+                [],
+                $this->getHeaders()
+            );
     }
 
     /**
@@ -105,7 +113,7 @@ class Endpoint
     }
 
     /**
-     * @param int $organizationId
+     * @param string $organizationId
      * @return $this
      */
     public function setOrganizationId($organizationId)
