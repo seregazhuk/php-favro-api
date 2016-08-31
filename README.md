@@ -24,6 +24,7 @@
 - [Cards](#cards)
 - [Tags](#tags)
 - [Tasks](#tasks)
+- [Tasklists](#tasklists)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -1156,7 +1157,6 @@ The response will be the created task:
 | Index | Type | Description |
 | --- | --- | --- |
 |name|string|The name of the task to edit. Optional.|
-|name|string|The name of the task to edit. Optional.|
 |position|string|Task position in the list. Optional.|
 |completed|string|Task completion state. Optional.|
 
@@ -1188,6 +1188,131 @@ Arguments:
 
 ```php
 $result = $favro->tasks->delete($taskId);
+```
+
+## Tasklists
+
+[Get all tasklists](https://favro.com/developer/#get-all-tasklists)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardCommonId|string|The card common id to filter by. Required.|
+
+```php
+$result = $favro->tasklists->getAll($cardCommonId);
+```
+
+The response will be a paginated array of card task lists:
+
+```php
+[
+    "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+            "taskListId": "8cc57b1d8a218fa639c8a0fa",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "cardCommonId": "tXfWe3MXQqhnnTRtw",
+            "description": "This is a tasklist",
+            "position": 0
+        ]
+    ]
+]
+```
+
+[Get a task list](https://favro.com/developer/#get-a-task-list)
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskListId|string|The id of the task list to be retrieved.|
+
+```php
+$result = $favro->tasklists->get($taskListId);
+```
+
+The response returns a task list object:
+
+```php
+[
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "description": "This is a tasklist",
+    "position": 0
+]
+```
+
+[Create a task list](https://favro.com/developer/#create-a-task-list)
+
+Argument `$attributes` is an array and contains the following values:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|cardCommonId|string|The card common id to post the task list on. Required|
+|name|string|The name of the task list. Required.|
+|position|string|Task position of the task list. Optional.|
+|tasks|array|The list of [card task](https://favro.com/developer/#card-task). Optional.|
+
+```php
+$result = $favro->tasklists->create($attributes); 
+```
+
+The response will be the created task list:
+
+```php
+[
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "description": "This is a tasklist",
+    "position": 0
+]
+```
+
+[Update a task list](https://favro.com/developer/#update-a-task-list)
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskId|string|The id of the task list to update.|
+|attributes|array|Array of attributes to be updated.|
+
+`attributes` is an array with the following structure:
+
+| Index | Type | Description |
+| --- | --- | --- |
+|name|string|The name of the task list to edit. Optional.|
+|position|number|Task position of the task list. Optional.|
+
+```php
+$result = $favro->tasklists->update($taskListId, $attributes); 
+```
+
+The response will be the updated task:
+
+```php
+[
+    "taskListId": "8cc57b1d8a218fa639c8a0fa",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "cardCommonId": "tXfWe3MXQqhnnTRtw",
+    "description": "This is a tasklist",
+    "position": 0
+]
+```
+
+[Delete a task list](https://favro.com/developer/#delete-a-task-list)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|taskListId|string|The id of the task list to be deleted. Required.|
+
+```php
+$result = $favro->tasklists->delete($taskListId);
 ```
 
 ## How can I thank you?
