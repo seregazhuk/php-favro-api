@@ -69,7 +69,8 @@ $favro->setOrganization($organizations[0]['organizationId']);
 
 ## Users
 
-[Get all users](https://favro.com/developer/#get-all-users):
+### [Get all users](https://favro.com/developer/#get-all-users):
+
 ```php
 $result = $favro->users->getAll();
 ```
@@ -92,7 +93,7 @@ The response will be an array of users:
 ]
 ```
 
-[Get a user](https://favro.com/developer/#get-a-user):
+### [Get a user](https://favro.com/developer/#get-a-user):
 
 Arguments: 
 
@@ -115,7 +116,8 @@ The response returns a user object:
 
 ## Organizations
 
-[Get all organizations](https://favro.com/developer/#get-all-organizations):
+### [Get all organizations](https://favro.com/developer/#get-all-organizations):
+
 ```php
 $result = $favro->organizations->getAll();
 ```
@@ -143,7 +145,7 @@ The response will be an array of organizations:
 ]
 ```
 
-[Get an organization](https://favro.com/developer/#get-an-organization):
+### [Get an organization](https://favro.com/developer/#get-an-organization):
 
 Arguments: 
 
@@ -171,7 +173,7 @@ The response returns an organization object:
 ]
 ```
 
-[Create an organization](https://favro.com/developer/#create-an-organization):
+### [Create an organization](https://favro.com/developer/#create-an-organization):
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -209,7 +211,7 @@ The response will be the created organization:
 ]
 ```
 
-[Update an organization](https://favro.com/developer/#update-an-organization):
+### [Update an organization](https://favro.com/developer/#update-an-organization):
 
 Arguments:
 
@@ -258,7 +260,7 @@ The response will be the updated organization:
 
 ## Collections
 
-[Get all collections](https://favro.com/developer/#get-all-collections):
+### [Get all collections](https://favro.com/developer/#get-all-collections):
 
 ```php
 $result = $favro->collections->getAll();
@@ -292,7 +294,7 @@ The response will be a paginated list of collections:
 ]
 ```
 
-[Get an collection](https://favro.com/developer/#get-a-collection):
+### [Get an collection](https://favro.com/developer/#get-a-collection):
 
 Arguments:
 
@@ -323,7 +325,7 @@ The response returns a collection object:
 ]
 ```
 
-[Create a collection](https://favro.com/developer/#create-a-collection):
+### [Create a collection](https://favro.com/developer/#create-a-collection):
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -368,7 +370,7 @@ The response will be the created collection:
 ]
 ```
 
-[Update a collection](https://favro.com/developer/#update-a-collection):
+### [Update a collection](https://favro.com/developer/#update-a-collection):
 
 Arguments:
 
@@ -422,7 +424,7 @@ The response will be the updated collection:
 ]
 ```
 
-[Delete a collection](https://favro.com/developer/#delete-a-collection):
+### [Delete a collection](https://favro.com/developer/#delete-a-collection):
 
 Arguments:
 
@@ -436,7 +438,7 @@ $result = $favro->collections->delete($collectionId);
 
 ## Widgets
 
-[Get all widgets](https://favro.com/developer/#get-all-widgets):
+### [Get all widgets](https://favro.com/developer/#get-all-widgets):
 
 Arguments:
 
@@ -479,7 +481,7 @@ The response will be a paginated array of widgets:
  ]
 ```
 
-[Get a widget](https://favro.com/developer/#get-a-widget):
+### [Get a widget](https://favro.com/developer/#get-a-widget):
 
 Arguments:
 
@@ -562,7 +564,7 @@ The response will be the created widget:
 ]
 ```
 
-[Update a widget](https://favro.com/developer/#update-a-widget):
+### [Update a widget](https://favro.com/developer/#update-a-widget):
 
 Arguments:
 
@@ -620,7 +622,7 @@ The response will be the updated widget:
 ]
 ```
 
-[Delete a widget](https://favro.com/developer/#delete-a-widget):
+### [Delete a widget](https://favro.com/developer/#delete-a-widget):
 
 Arguments:
 
@@ -639,7 +641,7 @@ $favro->widgets->delete($widgetCommonId, $collectionId);
 
 ## Columns
 
-[Get all columns](https://favro.com/developer/#get-all-columns):
+### [Get all columns](https://favro.com/developer/#get-all-columns):
 
 Arguments:
 
@@ -671,7 +673,7 @@ The response will be a paginated array of columns:
 ]
 ```
 
-[Get a column](https://favro.com/developer/#get-a-column)
+### [Get a column](https://favro.com/developer/#get-a-column)
 
 Arguments:
 
@@ -695,7 +697,7 @@ The response returns a column object:
 ]
 ```
 
-[Create a column](https://favro.com/developer/#create-a-column)
+### [Create a column](https://favro.com/developer/#create-a-column)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -721,7 +723,7 @@ The response will be the created column:
 ]
 ```
 
-[Update a column](https://favro.com/developer/#update-a-column)
+### [Update a column](https://favro.com/developer/#update-a-column)
 
 Arguments:
 
@@ -754,7 +756,7 @@ The response will be the updated column:
 ]
 ```
 
-[Delete a column](https://favro.com/developer/#delete-a-column)
+### [Delete a column](https://favro.com/developer/#delete-a-column)
 
 Deleting a column will also delete any cards that exist within that column.
 
@@ -770,7 +772,7 @@ $result = $favro->columns->delete($columnId);
 
 ## Cards
 
-[Get Get all cards](https://favro.com/developer/#get-all-cards)
+### [Get Get all cards](https://favro.com/developer/#get-all-cards)
 
 In order to use this endpoint you must specify either todoList or one of cardCommonId, widgetCommonId or collectionId.
 
@@ -808,7 +810,7 @@ The response will be a paginated array of cards:
 ]
 ```
 
-[Get a card](https://favro.com/developer/#get-a-card)
+### [Get a card](https://favro.com/developer/#get-a-card)
 
 Arguments:
 
@@ -832,7 +834,7 @@ The response returns a card object:
 ]
 ```
 
-[Create a card](https://favro.com/developer/#create-a-card)
+### [Create a card](https://favro.com/developer/#create-a-card)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -867,7 +869,7 @@ The response will be the created card:
 ]
 ```
 
-[Update a card](https://favro.com/developer/#update-a-card)
+### [Update a card](https://favro.com/developer/#update-a-card)
 
 Arguments:
 
@@ -912,7 +914,7 @@ The response will be the updated cards:
 ]
 ```
 
-[Delete a card](https://favro.com/developer/#delete-a-card)
+### [Delete a card](https://favro.com/developer/#delete-a-card)
 
 Arguments:
 
@@ -937,7 +939,7 @@ The response returns an array of cardIds for the cards that were deleted.
 
 ## Tags
 
-[Get all tags](https://favro.com/developer/#get-all-tags)
+### [Get all tags](https://favro.com/developer/#get-all-tags)
 
 Arguments:
 
@@ -969,7 +971,7 @@ The response will be a paginated array of tags:
 ]
 ```
 
-[Get a tag](https://favro.com/developer/#get-a-tag)
+### [Get a tag](https://favro.com/developer/#get-a-tag)
 
 | Argument | Type | Description |
 | --- | --- | --- |
@@ -990,7 +992,7 @@ The response returns a tag object:
 ]
 ```
 
-[Create a tag](https://favro.com/developer/#create-a-tag)
+### [Create a tag](https://favro.com/developer/#create-a-tag)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -1015,7 +1017,7 @@ The response will be the created tag:
 ]
 ```
 
-[Update a tag](https://favro.com/developer/#update-a-tag)
+### [Update a tag](https://favro.com/developer/#update-a-tag)
 
  Argument | Type | Description |
 | --- | --- | --- |
@@ -1044,7 +1046,7 @@ The response will be the updated tag:
 ]
 ```
 
-[Delete a tag](https://favro.com/developer/#delete-a-tag)
+### [Delete a tag](https://favro.com/developer/#delete-a-tag)
 
 Arguments:
 
@@ -1058,7 +1060,7 @@ $result = $favro->tags->delete($tagId);
 
 ## Tasks
 
-[Get all tasks](https://favro.com/developer/#get-all-tasks)
+### [Get all tasks](https://favro.com/developer/#get-all-tasks)
 
 Arguments:
 
@@ -1092,7 +1094,7 @@ The response will be a paginated array of card tasks:
  ]
 ```
 
-[Get a task](https://favro.com/developer/#get-a-task)
+### [Get a task](https://favro.com/developer/#get-a-task)
 
 | Argument | Type | Description |
 | --- | --- | --- |
@@ -1116,7 +1118,7 @@ The response returns a task object:
 ]
 ```
 
-[Create a task](https://favro.com/developer/#create-a-task)
+### [Create a task](https://favro.com/developer/#create-a-task)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -1145,7 +1147,7 @@ The response will be the created task:
 ]
 ```
 
-[Update a task](https://favro.com/developer/#update-a-task)
+### [Update a task](https://favro.com/developer/#update-a-task)
 
 | Argument | Type | Description |
 | --- | --- | --- |
@@ -1178,7 +1180,7 @@ The response will be the updated task:
 ]
 ```
 
-[Delete a task](https://favro.com/developer/#delete-a-task)
+### [Delete a task](https://favro.com/developer/#delete-a-task)
 
 Arguments:
 
@@ -1192,7 +1194,7 @@ $result = $favro->tasks->delete($taskId);
 
 ## Tasklists
 
-[Get all tasklists](https://favro.com/developer/#get-all-tasklists)
+### [Get all tasklists](https://favro.com/developer/#get-all-tasklists)
 
 Arguments:
 
@@ -1224,7 +1226,7 @@ The response will be a paginated array of card task lists:
 ]
 ```
 
-[Get a task list](https://favro.com/developer/#get-a-task-list)
+### [Get a task list](https://favro.com/developer/#get-a-task-list)
 
 | Argument | Type | Description |
 | --- | --- | --- |
@@ -1246,7 +1248,7 @@ The response returns a task list object:
 ]
 ```
 
-[Create a task list](https://favro.com/developer/#create-a-task-list)
+### [Create a task list](https://favro.com/developer/#create-a-task-list)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -1273,7 +1275,7 @@ The response will be the created task list:
 ]
 ```
 
-[Update a task list](https://favro.com/developer/#update-a-task-list)
+### [Update a task list](https://favro.com/developer/#update-a-task-list)
 
 | Argument | Type | Description |
 | --- | --- | --- |
@@ -1303,7 +1305,7 @@ The response will be the updated task:
 ]
 ```
 
-[Delete a task list](https://favro.com/developer/#delete-a-task-list)
+### [Delete a task list](https://favro.com/developer/#delete-a-task-list)
 
 Arguments:
 
