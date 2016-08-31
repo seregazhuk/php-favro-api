@@ -33,6 +33,11 @@ class Endpoint
     protected $http;
 
     /**
+     * @var string
+     */
+    protected $organizationId;
+
+    /**
      * @param HttpClient $http
      */
     public function __construct(HttpClient $http)
@@ -93,6 +98,20 @@ class Endpoint
      */
     protected function getHeaders()
     {
-        return $this->headers;
+        return array_merge(
+            $this->headers,
+            ['organizationId' => $this->organizationId]
+        );
+    }
+
+    /**
+     * @param int $organizationId
+     * @return $this
+     */
+    public function setOrganizationId($organizationId)
+    {
+        $this->organizationId = $organizationId;
+
+        return $this;
     }
 }

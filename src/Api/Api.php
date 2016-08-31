@@ -105,7 +105,7 @@ class Api
 
         foreach ($organizations['entities'] as $entity) {
             if ($entity['name'] == $organization) {
-                return $organization;
+                return $entity;
             }
         }
 

@@ -3,11 +3,10 @@
 namespace seregazhuk\Favro\Api\Endpoints;
 
 use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
-use seregazhuk\Favro\Api\Endpoints\Traits\BelongsToOrganization;
 
 class Collections extends Endpoint
 {
-    use BelongsToOrganization, CrudEndpoint;
+    use CrudEndpoint;
 
     /**
      * @var string
