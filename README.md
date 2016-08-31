@@ -69,7 +69,7 @@ $favro->setOrganization($organizations[0]['organizationId']);
 
 ## Users
 
-### [Get all users](https://favro.com/developer/#get-all-users):
+### [Get all users](https://favro.com/developer/#get-all-users)
 
 ```php
 $result = $favro->users->getAll();
@@ -93,7 +93,7 @@ The response will be an array of users:
 ]
 ```
 
-### [Get a user](https://favro.com/developer/#get-a-user):
+### [Get a user](https://favro.com/developer/#get-a-user)
 
 Arguments: 
 
@@ -116,7 +116,7 @@ The response returns a user object:
 
 ## Organizations
 
-### [Get all organizations](https://favro.com/developer/#get-all-organizations):
+### [Get all organizations](https://favro.com/developer/#get-all-organizations)
 
 ```php
 $result = $favro->organizations->getAll();
@@ -145,7 +145,7 @@ The response will be an array of organizations:
 ]
 ```
 
-### [Get an organization](https://favro.com/developer/#get-an-organization):
+### [Get an organization](https://favro.com/developer/#get-an-organization)
 
 Arguments: 
 
@@ -173,7 +173,7 @@ The response returns an organization object:
 ]
 ```
 
-### [Create an organization](https://favro.com/developer/#create-an-organization):
+### [Create an organization](https://favro.com/developer/#create-an-organization)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -211,7 +211,7 @@ The response will be the created organization:
 ]
 ```
 
-### [Update an organization](https://favro.com/developer/#update-an-organization):
+### [Update an organization](https://favro.com/developer/#update-an-organization)
 
 Arguments:
 
@@ -260,7 +260,7 @@ The response will be the updated organization:
 
 ## Collections
 
-### [Get all collections](https://favro.com/developer/#get-all-collections):
+### [Get all collections](https://favro.com/developer/#get-all-collections)
 
 ```php
 $result = $favro->collections->getAll();
@@ -294,7 +294,7 @@ The response will be a paginated list of collections:
 ]
 ```
 
-### [Get an collection](https://favro.com/developer/#get-a-collection):
+### [Get an collection](https://favro.com/developer/#get-a-collection)
 
 Arguments:
 
@@ -325,7 +325,7 @@ The response returns a collection object:
 ]
 ```
 
-### [Create a collection](https://favro.com/developer/#create-a-collection):
+### [Create a collection](https://favro.com/developer/#create-a-collection)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -370,7 +370,7 @@ The response will be the created collection:
 ]
 ```
 
-### [Update a collection](https://favro.com/developer/#update-a-collection):
+### [Update a collection](https://favro.com/developer/#update-a-collection)
 
 Arguments:
 
@@ -424,7 +424,7 @@ The response will be the updated collection:
 ]
 ```
 
-### [Delete a collection](https://favro.com/developer/#delete-a-collection):
+### [Delete a collection](https://favro.com/developer/#delete-a-collection)
 
 Arguments:
 
@@ -438,7 +438,7 @@ $result = $favro->collections->delete($collectionId);
 
 ## Widgets
 
-### [Get all widgets](https://favro.com/developer/#get-all-widgets):
+### [Get all widgets](https://favro.com/developer/#get-all-widgets)
 
 Arguments:
 
@@ -481,7 +481,7 @@ The response will be a paginated array of widgets:
  ]
 ```
 
-### [Get a widget](https://favro.com/developer/#get-a-widget):
+### [Get a widget](https://favro.com/developer/#get-a-widget)
 
 Arguments:
 
@@ -515,7 +515,7 @@ The response returns a widget object:
 ]
 ```
 
-[Create a widget](https://favro.com/developer/#create-a-widget):
+[Create a widget](https://favro.com/developer/#create-a-widget)
 
 Argument `$attributes` is an array and contains the following values:
 
@@ -564,7 +564,7 @@ The response will be the created widget:
 ]
 ```
 
-### [Update a widget](https://favro.com/developer/#update-a-widget):
+### [Update a widget](https://favro.com/developer/#update-a-widget)
 
 Arguments:
 
@@ -622,7 +622,7 @@ The response will be the updated widget:
 ]
 ```
 
-### [Delete a widget](https://favro.com/developer/#delete-a-widget):
+### [Delete a widget](https://favro.com/developer/#delete-a-widget)
 
 Arguments:
 
@@ -641,7 +641,7 @@ $favro->widgets->delete($widgetCommonId, $collectionId);
 
 ## Columns
 
-### [Get all columns](https://favro.com/developer/#get-all-columns):
+### [Get all columns](https://favro.com/developer/#get-all-columns)
 
 Arguments:
 
