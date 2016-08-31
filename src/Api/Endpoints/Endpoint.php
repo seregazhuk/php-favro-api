@@ -99,8 +99,8 @@ class Endpoint
     protected function getHeaders()
     {
         return array_merge(
-            $this->headers,
-            ['organizationId' => $this->organizationId]
+            ['organizationId' => $this->organizationId],
+            $this->headers
         );
     }
 

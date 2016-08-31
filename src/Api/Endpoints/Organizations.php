@@ -2,12 +2,9 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
 
-class Organizations extends Endpoint
+class Organizations extends CrudEndpoint
 {
-    use CrudEndpoint;
-
     /**
      * @var string
      */
@@ -22,5 +19,17 @@ class Organizations extends Endpoint
         $this->headers['organizationId'] = $id;
 
         return parent::getById($id);
+    }
+
+    /**
+     * @param string $itemId
+     * @param array $attributes
+     * @return mixed
+     */
+    public function update($itemId, array $attributes)
+    {
+        $this->headers['organizationId'] = $itemId;
+
+        return parent::update($itemId, $attributes);
     }
 }

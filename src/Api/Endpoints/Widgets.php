@@ -2,13 +2,8 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
-
-class Widgets extends Endpoint
+class Widgets extends CrudEndpoint
 {
-
-    use CrudEndpoint;
-
     /**
      * @var string
      */

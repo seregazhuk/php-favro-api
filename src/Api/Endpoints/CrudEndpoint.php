@@ -1,18 +1,9 @@
 <?php
 
-namespace seregazhuk\Favro\Api\Endpoints\Traits;
+namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Contracts\HttpClient;
-
-/**
- * Class CrudEndpoint
- * @package seregazhuk\Favro\Api\Endpoints\Traits
- *
- * @method HttpClient getHttp
- */
-trait CrudEndpoint
+class CrudEndpoint extends Endpoint
 {
-
     /**
      * @param array $attributes
      * @return array

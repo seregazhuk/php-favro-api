@@ -2,12 +2,8 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
-
-class TaskLists extends Endpoint
+class TaskLists extends CrudEndpoint
 {
-
-    use CrudEndpoint;
 
     /**
      * @var string

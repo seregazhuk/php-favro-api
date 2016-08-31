@@ -13,6 +13,7 @@ use seregazhuk\Favro\Api\Endpoints\Endpoint;
 use seregazhuk\Favro\Api\Endpoints\Collections;
 use seregazhuk\Favro\Api\Endpoints\Organizations;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
+use seregazhuk\Favro\Exceptions\WrongOrganizationName;
 
 /**
  * Class Api
@@ -97,18 +98,18 @@ class Api
 
     /**
      * @param $organization
-     * @return bool|array
+     * @return array|bool
+     * @throws WrongOrganizationName
      */
     protected function getOrganizationByName($organization)
     {
         $organizations = $this->organizations->getAll();
-
         foreach ($organizations['entities'] as $entity) {
             if ($entity['name'] == $organization) {
                 return $entity;
             }
         }
 
-        return false;
+        throw new WrongOrganizationName("Organization $organization not found!");
     }
 }

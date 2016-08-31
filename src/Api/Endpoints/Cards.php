@@ -2,13 +2,8 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-use seregazhuk\Favro\Api\Endpoints\Traits\CrudEndpoint;
-
-class Cards extends Endpoint
+class Cards extends CrudEndpoint
 {
-
-    use CrudEndpoint;
-
     /**
      * @var string
      */
