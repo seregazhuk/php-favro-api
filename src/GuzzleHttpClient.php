@@ -14,6 +14,11 @@ class GuzzleHttpClient implements HttpClient
     protected $client;
 
     /**
+     * @var array
+     */
+    protected $responseHeaders;
+
+    /**
      * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client)
@@ -116,7 +121,16 @@ class GuzzleHttpClient implements HttpClient
     {
         $responseContents = $response->getBody()->getContents();
 
+        $this->responseHeaders = $response->getHeaders();
+
         return json_decode($responseContents, true);
     }
 
+    /**
+     * @return array
+     */
+    public function getResponseHeaders()
+    {
+        return $this->responseHeaders;
+    }
 }

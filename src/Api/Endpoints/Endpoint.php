@@ -9,6 +9,11 @@ class Endpoint
     /**
      * @var array
      */
+    protected $rateLimitInfo;
+
+    /**
+     * @var array
+     */
     protected $allowedMethods = [
         'getById',
         'getAll',

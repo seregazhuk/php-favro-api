@@ -27,6 +27,8 @@ use seregazhuk\Favro\Exceptions\WrongOrganizationName;
  * @property Tasks $tasks
  * @property TaskLists $tasklists
  * @property Comments $comments
+ *
+ * @method array getRateInfo
  */
 class Api
 {
@@ -87,13 +89,22 @@ class Api
         return $this;
     }
 
-
     /**
      * @return string
      */
     public function getOrganizationId()
     {
         return $this->organizationId;
+    }
+
+    /**
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        return call_user_func([$this->endpointsContainer, $name], $arguments);
     }
 
     /**

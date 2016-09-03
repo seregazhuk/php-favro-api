@@ -13,7 +13,7 @@ class EndpointsContainer
     /*
     * @var HttpInterface
     */
-    protected $http;
+    protected $httpClient;
 
     /*
      * @var array
@@ -21,11 +21,11 @@ class EndpointsContainer
     protected $endpoints = [];
 
     /**
-     * @param HttpClient $http
+     * @param HttpClient $httpClient
      */
-    public function __construct(HttpClient $http)
+    public function __construct(HttpClient $httpClient)
     {
-        $this->http = $http;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -65,6 +65,20 @@ class EndpointsContainer
      */
     protected function buildEndpoint($className)
     {
-        return (new ReflectionClass($className))->newInstanceArgs([$this->http]);
+        return (new ReflectionClass($className))->newInstanceArgs([$this->httpClient]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getRateInfo()
+    {
+        $responseHeaders = $this->httpClient->getResponseHeaders();
+
+        return [
+            'reset'     => $responseHeaders['X-RateLimit-Reset'][0],
+            'limit'     => $responseHeaders['X-RateLimit-Limit'][0],
+            'remaining' => $responseHeaders['X-RateLimit-Remaining'][0],
+        ];
     }
 }

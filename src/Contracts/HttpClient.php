@@ -41,4 +41,9 @@ interface HttpClient
      * @return $this
      */
     public function setBaseUrl($url);
+
+    /**
+     * @return array
+     */
+    public function getResponseHeaders();
 }

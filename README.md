@@ -16,6 +16,7 @@
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Rate limiting](#rate-limit)
 - [Users](#users)
 - [Organizations](#organizations)
 - [Collections](#collections)
@@ -25,6 +26,7 @@
 - [Tags](#tags)
 - [Tasks](#tasks)
 - [Tasklists](#tasklists)
+- [Comments](#comments)
 
 ## Dependencies
 Library requires CURL extension and PHP 5.5.9 or above.
@@ -66,6 +68,31 @@ $organizations = $result['entities'];
 // select the first organization
 $favro->setOrganization($organizations[0]['organizationId']);
 ```
+
+## Rate limiting
+
+To get your current rate limit information use *getRateInfo()* method:
+
+```php
+$result = $favro->getRateInfo();
+print_r($result);
+
+/*
+[
+    'reset' => 2016-09-03T08:17:24.158Z
+    'remaining' => 42
+    'limit' => 50
+]
+*/
+```
+Result will be an array of three elements:
+
+| Key | Description |
+| ---  | --- |
+|reset|The time at which the current rate limit window resets in UTC.|
+|remaining|The number of requests remaining in the current rate limit window.|
+|limit|The maximum number of requests permitted to make per hour.|
+
 
 ## Users
 
@@ -1316,6 +1343,68 @@ Arguments:
 ```php
 $result = $favro->tasklists->delete($taskListId);
 ```
+
+## Comments 
+
+### [Get all comments](https://favro.com/developer/#get-all-comments)
+
+Arguments:
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|cardCommonId|string|The card common id to filter by. Required.|
+
+```php
+$result = $favro->comments->getAll($cardCommonId);
+```
+
+The response will be a paginated array of comments:
+
+```php
+  "limit": 100,
+    "page": 0,
+    "pages": 1,
+    "requestId": "8cc57b1d8a218fa639c8a0fa",
+    "entities": [
+        [
+        "commentId": "67973f72db34592d8fc96c48",
+            "cardCommonId": "ff440e8f358c08513a86c8d6",
+            "organizationId": "zk4CJpg5uozhL4R2W",
+            "userId": "b4d8c6283d9d58f9a39108e7",
+            "comment": "This is a comment",
+            "created": "2016-04-18T11:18:42.901Z",
+            "lastUpdated": "2016-04-18T11:18:42.901Z"
+        ]
+    ]
+```
+
+### [Get a comment](https://favro.com/developer/#get-a-comment)
+
+| Argument | Type | Description |
+| --- | --- | --- |
+|commentId|string|The id of the comment to be retrieved.|
+
+```php
+$result = $favro->comments->get($commentId);
+```
+
+The response returns a comment object:
+
+```php
+[
+    "commentId": "67973f72db34592d8fc96c48",
+    "cardCommonId": "ff440e8f358c08513a86c8d6",
+    "organizationId": "zk4CJpg5uozhL4R2W",
+    "userId": "b4d8c6283d9d58f9a39108e7",
+    "comment": "This is a comment",
+    "created": "2016-04-18T11:18:42.901Z",
+    "lastUpdated": "2016-04-18T11:18:42.901Z"
+]
+```
+
+### [Create a comment](https://favro.com/developer/#create-a-comment)
+
+
 
 ## How can I thank you?
 Why not star the github repo? I'd love the attention!

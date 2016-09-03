@@ -12,7 +12,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_sets_http_client_base_url()
     {
-        $baseUrl = 'http://www.example.com';
+        $baseUrl = 'httpClient://www.example.com';
 
         $client = $this->createClient()
             ->shouldReceive('setBaseUrl')
