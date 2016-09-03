@@ -16,7 +16,7 @@
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
-- [Rate limiting](#rate-limit)
+- [Rate limiting](#rate-limiting)
 - [Users](#users)
 - [Organizations](#organizations)
 - [Collections](#collections)
@@ -93,6 +93,7 @@ Result will be an array of three elements:
 |remaining|The number of requests remaining in the current rate limit window.|
 |limit|The maximum number of requests permitted to make per hour.|
 
+More information about rate limiting is available in the [official api docs](https://favro.com/developer/#rate-limiting).
 
 ## Users
 
