@@ -3,9 +3,11 @@
 namespace seregazhuk\tests;
 
 use GuzzleHttp\Client;
-use seregazhuk\Favro\GuzzleHttpClient;
-use seregazhuk\Favro\Api\Endpoints\Users;
+use Mockery;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
+use seregazhuk\Favro\Api\Endpoints\Users;
+use seregazhuk\Favro\Contracts\HttpClient;
+use seregazhuk\Favro\GuzzleHttpClient;
 
 class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,11 +28,51 @@ class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
             ->resolve('unknown');
     }
 
+    /** @test */
+    public function it_parses_rate_limit_headers_from_http_client()
+    {
+        $httpClient = $this->createHttpClient();
+        $httpClient
+            ->shouldReceive('getResponseHeaders')
+            ->andReturn([
+                'X-RateLimit-Reset' => [1],
+                'X-RateLimit-Limit' => [2],
+                'X-RateLimit-Remaining' => [3],
+            ]);
+
+        $container = $this->createContainer($httpClient);
+        $this->assertEquals(
+            [
+                'reset'     => 1,
+                'limit'     => 2,
+                'remaining' => 3,
+            ], $container->getRateInfo()
+        );
+    }
+
     /**
+     * @param HttpClient|null $httpClient
      * @return EndpointsContainer
      */
-    protected function createContainer()
+    protected function createContainer($httpClient = null)
     {
-        return new EndpointsContainer(new GuzzleHttpClient(new Client()));
+        if (!$httpClient) {
+            $httpClient = new GuzzleHttpClient(new Client());
+        }
+
+        return new EndpointsContainer($httpClient);
+    }
+
+    /**
+     * @return Mockery\MockInterface|HttpClient
+     */
+    protected function createHttpClient()
+    {
+        return Mockery::mock(GuzzleHttpClient::class);
+    }
+
+    protected function tearDown()
+    {
+        Mockery::close();
     }
 }

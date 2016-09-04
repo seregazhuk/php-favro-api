@@ -109,7 +109,7 @@ class Endpoint
     /**
      * @return array
      */
-    protected function getHeaders()
+    public function getHeaders()
     {
         return array_merge(
             ['organizationId' => $this->organizationId],
