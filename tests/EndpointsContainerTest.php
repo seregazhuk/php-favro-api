@@ -4,12 +4,14 @@ namespace seregazhuk\tests;
 
 use GuzzleHttp\Client;
 use Mockery;
+use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
 use seregazhuk\Favro\Api\Endpoints\Users;
 use seregazhuk\Favro\Contracts\HttpClient;
+use seregazhuk\Favro\Exceptions\WrongEndpoint;
 use seregazhuk\Favro\GuzzleHttpClient;
 
-class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
+class EndpointsContainerTest extends TestCase
 {
     /** @test */
     public function it_resolves_an_instance_of_endpoint()
@@ -18,14 +20,12 @@ class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Users::class, $container->resolve('users'));
     }
 
-    /**
-     * @test
-     * @expectedException \seregazhuk\Favro\Exceptions\WrongEndpoint
-     */
+    /** @test */
     public function it_throws_exception_when_resolving_non_existing_endpoint()
     {
-        $this->createContainer()
-            ->resolve('unknown');
+        $this->setExpectedException(WrongEndpoint::class);
+
+        $this->createContainer()->resolve('unknown');
     }
 
     /** @test */
@@ -34,11 +34,13 @@ class EndpointsContainerTest extends \PHPUnit_Framework_TestCase
         $httpClient = $this->createHttpClient();
         $httpClient
             ->shouldReceive('getResponseHeaders')
-            ->andReturn([
-                'X-RateLimit-Reset' => [1],
-                'X-RateLimit-Limit' => [2],
-                'X-RateLimit-Remaining' => [3],
-            ]);
+            ->andReturn(
+                [
+                    'X-RateLimit-Reset'     => [1],
+                    'X-RateLimit-Limit'     => [2],
+                    'X-RateLimit-Remaining' => [3],
+                ]
+            );
 
         $container = $this->createContainer($httpClient);
         $this->assertEquals(

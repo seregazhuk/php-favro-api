@@ -2,10 +2,12 @@
 
 namespace seregazhuk\tests;
 
+use Mockery;
+use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\Api\Api;
 use seregazhuk\Favro\Favro;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+class ApiTest extends TestCase
 {
     /** @test */
     public function it_should_set_organization_id()
@@ -20,9 +22,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function it_should_set_organization_by_name()
     {
-        $organization = ['name' => 'My Organization', 'organizationId'=>'123'];
+        $organization = ['name' => 'My Organization', 'organizationId' => '123'];
 
-        $api = \Mockery::mock(Api::class)
+        $api = Mockery::mock(Api::class)
             ->shouldDeferMissing()
             ->shouldAllowMockingProtectedMethods()
             ->shouldReceive('getOrganizationByName')

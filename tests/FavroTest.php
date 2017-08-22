@@ -2,10 +2,11 @@
 
 namespace seregazhuk\tests;
 
+use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\Favro;
 use seregazhuk\Favro\Api\Api;
 
-class FavroTest extends \PHPUnit_Framework_TestCase
+class FavroTest extends TestCase
 {
     /** @test */
     public function it_should_return_an_instance_of_api()

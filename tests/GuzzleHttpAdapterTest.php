@@ -5,16 +5,20 @@ namespace seregazhuk\tests;
 use Mockery;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\ClientInterface;
+use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\GuzzleHttpClient;
 
-class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
+class GuzzleHttpAdapterTest extends TestCase
 {
     /** @test */
     public function it_sets_http_client_base_url()
     {
-        $baseUrl = 'httpClient://www.example.com';
+        $baseUrl = 'http://www.example.com';
 
-        $client = $this->createClient()
+        /** @var ClientInterface $client */
+        $client = $this
+            ->createClient()
             ->shouldReceive('setBaseUrl')
             ->with($baseUrl)
             ->getMock();
@@ -30,11 +34,12 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $params = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-
-        $client = $this->createClient()
+        /** @var ClientInterface $client */
+        $client = $this
+            ->createClient()
             ->shouldReceive('get')
             ->with(
-                $uri  .'?' . http_build_query($params),
+                $uri . '?' . http_build_query($params),
                 ['headers' => $headers]
             )
             ->andReturn(new Response([]))
@@ -51,7 +56,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $body = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-
+        /** @var ClientInterface $client */
         $client = $this->createClient()
             ->shouldReceive('post')
             ->with(
@@ -72,7 +77,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $body = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-
+        /** @var ClientInterface $client */
         $client = $this->createClient()
             ->shouldReceive('put')
             ->with(
@@ -92,7 +97,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
         $uri = '/test';
         $headers = ['header1' => 'test'];
 
-
+        /** @var ClientInterface $client */
         $client = $this->createClient()
             ->shouldReceive('delete')
             ->with($uri, ['headers' => $headers, 'form_params' => []])
@@ -104,7 +109,7 @@ class GuzzleHttpAdapterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \Mockery\MockInterface | ClientInterface
+     * @return MockInterface|ClientInterface
      */
     protected function createClient()
     {

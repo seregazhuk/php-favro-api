@@ -4,11 +4,12 @@ namespace seregazhuk\tests;
 
 use Mockery;
 use GuzzleHttp\Client;
+use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\GuzzleHttpClient;
 use seregazhuk\Favro\Contracts\HttpClient;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
 
-class EndpointTest extends \PHPUnit_Framework_TestCase
+class EndpointTest extends TestCase
 {
     /** @test */
     public function it_should_check_if_method_is_allowed_to_call()
@@ -36,11 +37,13 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
 
         $httpClient
             ->shouldReceive('get')
-            ->withAnyArgs([
-                $endpoint->makeRequestUrl(),
-                [$params],
-                $endpoint->getHeaders()
-            ]);
+            ->withAnyArgs(
+                [
+                    $endpoint->makeRequestUrl(),
+                    [$params],
+                    $endpoint->getHeaders(),
+                ]
+            );
         $endpoint->getAll($params);
     }
 
@@ -52,11 +55,13 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
 
         $httpClient
             ->shouldReceive('get')
-            ->withAnyArgs([
-                $endpoint->makeRequestUrl(1),
-                [],
-                $endpoint->getHeaders()
-            ]);
+            ->withAnyArgs(
+                [
+                    $endpoint->makeRequestUrl(1),
+                    [],
+                    $endpoint->getHeaders(),
+                ]
+            );
         $endpoint->getById(1);
     }
 
@@ -86,5 +91,5 @@ class EndpointTest extends \PHPUnit_Framework_TestCase
     {
         Mockery::close();
     }
-    
+
 }
