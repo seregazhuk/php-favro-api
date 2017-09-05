@@ -8,8 +8,6 @@ use seregazhuk\Favro\Exceptions\WrongEndpoint;
 
 class EndpointsContainer
 {
-    const ENDPOINTS_NAMESPACE = 'seregazhuk\\Favro\\Api\\Endpoints\\';
-
     /*
     * @var HttpInterface
     */
@@ -50,7 +48,7 @@ class EndpointsContainer
      */
     protected function addProvider($endpoint)
     {
-        $className = self::ENDPOINTS_NAMESPACE . ucfirst($endpoint);
+        $className = __NAMESPACE__ . '\\' . ucfirst($endpoint);
 
         if (!class_exists($className)) {
             throw new WrongEndpoint("Endpoint $className not found.");
