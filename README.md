@@ -32,8 +32,8 @@
 Library requires CURL extension and PHP 5.6 or above.
 
 ## Installation
-The recommended way to install this library is via [Composer](http://getcomposer.org). 
-[New to Composer?](http://getcomposer.org/doc/00-intro.md)
+The recommended way to install this library is via [Composer](https://getcomposer.org). 
+[New to Composer?](https://getcomposer.org/doc/00-intro.md)
 
 ```
 composer require seregazhuk/favro-api
