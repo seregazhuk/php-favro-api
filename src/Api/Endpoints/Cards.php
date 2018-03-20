@@ -10,15 +10,6 @@ class Cards extends CrudEndpoint
     protected $endpoint = 'cards';
 
     /**
-     * @param string $widgetCommonId
-     * @return mixed
-     */
-    public function getAll($widgetCommonId)
-    {
-        return parent::getAll(['widgetCommonId'=>$widgetCommonId]);
-    }
-
-    /**
      * @param string $cardId
      * @param bool $everywhere
      * @return mixed
