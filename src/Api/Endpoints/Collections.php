@@ -5,7 +5,10 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Collections extends CrudEndpoint
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'collections';
+    public function endpoint()
+    {
+        return 'collections';
+    }
 }

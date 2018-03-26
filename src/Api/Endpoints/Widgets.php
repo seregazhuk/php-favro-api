@@ -5,11 +5,6 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Widgets extends CrudEndpoint
 {
     /**
-     * @var string
-     */
-    protected $endpoint = 'widgets';
-
-    /**
      * @param string $itemId
      * @param string|null $collectionId
      * @return mixed
@@ -25,5 +20,13 @@ class Widgets extends CrudEndpoint
                 $attributes,
                 $this->getHeaders()
             );
+    }
+
+    /**
+     * @return string
+     */
+    public function endpoint()
+    {
+        return 'widgets';
     }
 }

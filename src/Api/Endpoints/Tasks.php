@@ -5,7 +5,10 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Tasks extends CrudEndpoint
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'tasks';
+    public function endpoint()
+    {
+        return 'tasks';
+    }
 }

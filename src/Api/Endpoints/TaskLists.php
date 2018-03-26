@@ -4,9 +4,11 @@ namespace seregazhuk\Favro\Api\Endpoints;
 
 class TaskLists extends CrudEndpoint
 {
-
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'tasklists';
+    public function endpoint()
+    {
+        return 'tasklists';
+    }
 }

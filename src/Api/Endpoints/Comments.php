@@ -4,9 +4,11 @@ namespace seregazhuk\Favro\Api\Endpoints;
 
 class Comments extends CrudEndpoint
 {
-
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'comments';
+    public function endpoint()
+    {
+        return 'comments';
+    }
 }

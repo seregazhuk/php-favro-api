@@ -2,7 +2,7 @@
 
 namespace seregazhuk\Favro\Api\Endpoints;
 
-class CrudEndpoint extends Endpoint
+abstract class CrudEndpoint extends Endpoint
 {
     /**
      * @param array $attributes
@@ -37,15 +37,18 @@ class CrudEndpoint extends Endpoint
 
     /**
      * @param string $itemId
+     * @param bool $everywhere
      * @return mixed
      */
-    public function delete($itemId)
+    public function delete($itemId, $everywhere = false)
     {
+        $params = $everywhere ? ['everywhere' => $everywhere] : [];
+
         return $this
             ->getHttp()
             ->delete(
                 $this->makeRequestUrl($itemId),
-                [],
+                $params,
                 $this->getHeaders()
             );
     }
