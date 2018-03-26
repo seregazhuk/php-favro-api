@@ -5,7 +5,10 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Columns extends CrudEndpoint
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'columns';
+    public function endpoint()
+    {
+        return 'columns';
+    }
 }

@@ -12,7 +12,8 @@ use seregazhuk\Favro\Api\Endpoints\Widgets;
 use seregazhuk\Favro\Api\Endpoints\Endpoint;
 use seregazhuk\Favro\Api\Endpoints\Collections;
 use seregazhuk\Favro\Api\Endpoints\Organizations;
-use seregazhuk\Favro\Api\Endpoints\EndpointsContainer;
+use seregazhuk\Favro\Contracts\HttpClient;
+use seregazhuk\Favro\Exceptions\WrongEndpoint;
 use seregazhuk\Favro\Exceptions\WrongOrganizationName;
 
 /**
@@ -27,24 +28,30 @@ use seregazhuk\Favro\Exceptions\WrongOrganizationName;
  * @property Tasks $tasks
  * @property TaskLists $tasklists
  * @property Comments $comments
- *
- * @method array getRateInfo
  */
 class Api
 {
     /**
-     * @var EndpointsContainer
-     */
-    protected $endpointsContainer;
-
-    /**
      * @var string
      */
-    protected $organizationId;
+    private $organizationId;
 
-    public function __construct(EndpointsContainer $endpointsContainer)
+    /**
+     * @var HttpClient
+     */
+    private $httpClient;
+
+    /**
+     * @var Endpoint[]
+     */
+    private $endpoints;
+
+    public function __construct(HttpClient $httpClient, Endpoint ...$endpoints)
     {
-        $this->endpointsContainer = $endpointsContainer;
+        $this->httpClient = $httpClient;
+        foreach ($endpoints as $endpoint) {
+            $this->endpoints[$endpoint->endpoint()] = $endpoint;
+        }
     }
 
     /**
@@ -53,10 +60,11 @@ class Api
      * @param string $endpoint
      *
      * @return Endpoint
+     * @throws WrongEndpoint
      */
     public function __get($endpoint)
     {
-        $endpoint = $this->endpointsContainer->resolve($endpoint);
+        $endpoint = $this->resolveEndpoint($endpoint);
 
         if (method_exists($endpoint, 'setOrganizationId')) {
             $endpoint->setOrganizationId($this->organizationId);
@@ -66,8 +74,9 @@ class Api
     }
 
     /**
-     * @param $organizationName
+     * @param string $organizationName
      * @return $this
+     * @throws WrongOrganizationName
      */
     public function setOrganization($organizationName)
     {
@@ -98,29 +107,49 @@ class Api
     }
 
     /**
-     * @param string $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($name, $arguments)
-    {
-        return call_user_func([$this->endpointsContainer, $name], $arguments);
-    }
-
-    /**
-     * @param $organization
+     * @param $organizationName
      * @return array|bool
      * @throws WrongOrganizationName
      */
-    protected function getOrganizationByName($organization)
+    private function getOrganizationByName($organizationName)
     {
         $organizations = $this->organizations->getAll();
         foreach ($organizations['entities'] as $entity) {
-            if ($entity['name'] == $organization) {
+            if ($entity['name'] == $organizationName) {
                 return $entity;
             }
         }
 
-        throw new WrongOrganizationName("Organization $organization not found!");
+        throw new WrongOrganizationName("Organization $organizationName not found!");
+    }
+
+    /**
+     * @param string $endpoint
+     * @return Endpoint
+     * @throws WrongEndpoint
+     */
+    private function resolveEndpoint($endpoint)
+    {
+        $endpoint = strtolower($endpoint);
+
+        if(isset($this->endpoints[$endpoint])) {
+            return $this->endpoints[$endpoint];
+        }
+
+        throw new WrongEndpoint("There is no endpoint called $endpoint.");
+    }
+
+    /**
+     * @return array
+     */
+    public function getRateInfo()
+    {
+        $responseHeaders = $this->httpClient->getResponseHeaders();
+
+        return [
+            'reset'     => $responseHeaders['X-RateLimit-Reset'][0],
+            'limit'     => $responseHeaders['X-RateLimit-Limit'][0],
+            'remaining' => $responseHeaders['X-RateLimit-Remaining'][0],
+        ];
     }
 }

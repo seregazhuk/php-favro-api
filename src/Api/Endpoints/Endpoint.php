@@ -4,28 +4,12 @@ namespace seregazhuk\Favro\Api\Endpoints;
 
 use seregazhuk\Favro\Contracts\HttpClient;
 
-class Endpoint
+abstract class Endpoint
 {
     /**
      * @var array
      */
     protected $rateLimitInfo;
-
-    /**
-     * @var array
-     */
-    protected $allowedMethods = [
-        'getById',
-        'getAll',
-        'create',
-        'update',
-        'delete',
-    ];
-
-    /**
-     * @var string
-     */
-    protected $endpoint;
 
     /**
      * @var array
@@ -56,16 +40,7 @@ class Endpoint
      */
     public function makeRequestUrl($verb = '')
     {
-        return "https://favro.com/api/v1/{$this->endpoint}/$verb";
-    }
-
-    /**
-     * @param string $method
-     * @return bool
-     */
-    public function isMethodAllowed($method)
-    {
-        return in_array($method, $this->allowedMethods);
+        return "https://favro.com/api/v1/{$this->endpoint()}/$verb";
     }
 
     /**
@@ -127,4 +102,9 @@ class Endpoint
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    abstract public function endpoint();
 }

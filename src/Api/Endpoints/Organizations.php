@@ -6,11 +6,6 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Organizations extends CrudEndpoint
 {
     /**
-     * @var string
-     */
-    protected $endpoint = 'organizations';
-
-    /**
      * @param string $id
      * @return array
      */
@@ -31,5 +26,13 @@ class Organizations extends CrudEndpoint
         $this->headers['organizationId'] = $itemId;
 
         return parent::update($itemId, $attributes);
+    }
+
+    /**
+     * @return string
+     */
+    public function endpoint()
+    {
+        return 'organizations';
     }
 }

@@ -5,7 +5,10 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Users extends Endpoint
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'users';
+    public function endpoint()
+    {
+        return 'users';
+    }
 }

@@ -5,7 +5,10 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Tags extends CrudEndpoint
 {
     /**
-     * @var string
+     * @return string
      */
-    protected $endpoint = 'tags';
+    public function endpoint()
+    {
+        return 'tags';
+    }
 }
