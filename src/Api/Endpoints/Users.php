@@ -5,7 +5,7 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Users extends Endpoint
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function endpoint()
     {

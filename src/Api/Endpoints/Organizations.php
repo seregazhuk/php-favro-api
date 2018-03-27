@@ -29,7 +29,7 @@ class Organizations extends CrudEndpoint
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function endpoint()
     {

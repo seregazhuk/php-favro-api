@@ -23,7 +23,7 @@ class Widgets extends CrudEndpoint
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function endpoint()
     {

@@ -5,7 +5,7 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Cards extends CrudEndpoint
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function endpoint()
     {

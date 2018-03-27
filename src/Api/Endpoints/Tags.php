@@ -5,7 +5,7 @@ namespace seregazhuk\Favro\Api\Endpoints;
 class Tags extends CrudEndpoint
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function endpoint()
     {
