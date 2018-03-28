@@ -18,7 +18,7 @@ class Widgets extends CrudEndpoint
             ->delete(
                 $this->makeRequestUrl($itemId),
                 $attributes,
-                $this->getHeaders()
+                $this->headers()
             );
     }
 
