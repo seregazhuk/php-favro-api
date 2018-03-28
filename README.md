@@ -54,7 +54,7 @@ use seregazhuk\Favro\Favro;
 $favro = Favro::create('test@example.com', 'test');
 
 // set your organization
-$favro->setOrganization("My Organization");
+$favro->useOrganization("My Organization");
 
 // get all collections
 $result = $favro->collections->getAll();
@@ -68,7 +68,7 @@ $result = $favro->organizations->getAll();
 $organizations = $result['entities'];
 
 // select the first organization
-$favro->setOrganization($organizations[0]['organizationId']);
+$favro->useOrganization($organizations[0]['organizationId']);
 ```
 
 ## Rate limiting
