@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## v0.2.3 - ?
+## v0.2.3 - 2018-03-28
 ### Fixed:
  - Endpoints classes refactoring (#3 by @seregazhuk)
 ### Changed:
