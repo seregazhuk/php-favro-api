@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed:
  - Endpoints classes refactoring (#3 by @seregazhuk)
 ### Changed:
- - Endpoints method 'setOrganizationId()' renamed to 'withOrganization()' 
+ - Api method 'setOrganization()' renamed to 'withOrganization()' 
 
 ## v0.2.2 - 2018-03-20
 ### Fixed:
