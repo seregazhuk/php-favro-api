@@ -39,16 +39,16 @@ class Api
     /**
      * @var HttpClient
      */
-    private $httpClient;
+    private $http;
 
     /**
      * @var Endpoint[]
      */
     private $endpoints;
 
-    public function __construct(HttpClient $httpClient, Endpoint ...$endpoints)
+    public function __construct(HttpClient $http, Endpoint ...$endpoints)
     {
-        $this->httpClient = $httpClient;
+        $this->http = $http;
         foreach ($endpoints as $endpoint) {
             $this->endpoints[$endpoint->endpoint()] = $endpoint;
         }
@@ -57,14 +57,14 @@ class Api
     /**
      * Magic method to access different endpoints.
      *
-     * @param string $endpoint
+     * @param string $alias
      *
      * @return Endpoint
      * @throws WrongEndpoint
      */
-    public function __get($endpoint)
+    public function __get($alias)
     {
-        $endpoint = $this->resolveEndpoint($endpoint);
+        $endpoint = $this->resolveEndpoint($alias);
 
         if (method_exists($endpoint, 'setOrganizationId')) {
             $endpoint->setOrganizationId($this->organizationId);
@@ -144,7 +144,7 @@ class Api
      */
     public function getRateInfo()
     {
-        $responseHeaders = $this->httpClient->getResponseHeaders();
+        $responseHeaders = $this->http->getResponseHeaders();
 
         return [
             'reset'     => $responseHeaders['X-RateLimit-Reset'][0],
