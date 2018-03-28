@@ -44,21 +44,13 @@ abstract class Endpoint
     }
 
     /**
-     * @return HttpClient
-     */
-    public function getHttp()
-    {
-        return $this->http;
-    }
-
-    /**
      * @param array $params
      * @return array
      */
     public function getAll(array $params = [])
     {
         return $this
-            ->getHttp()
+            ->http
             ->get(
                 $this->makeRequestUrl(),
                 $params,
@@ -73,7 +65,7 @@ abstract class Endpoint
     public function getById($id)
     {
         return $this
-            ->getHttp()
+            ->http
             ->get(
                 $this->makeRequestUrl($id),
                 [],
@@ -96,7 +88,7 @@ abstract class Endpoint
      * @param string $organizationId
      * @return $this
      */
-    public function setOrganizationId($organizationId)
+    public function withOrganization($organizationId)
     {
         $this->organizationId = $organizationId;
 

@@ -11,7 +11,7 @@ abstract class CrudEndpoint extends Endpoint
     public function create(array $attributes)
     {
         return $this
-            ->getHttp()
+            ->http
             ->post(
                 $this->makeRequestUrl(),
                 $attributes,
@@ -27,7 +27,7 @@ abstract class CrudEndpoint extends Endpoint
     public function update($itemId, array $attributes)
     {
         return $this
-            ->getHttp()
+            ->http
             ->put(
                 $this->makeRequestUrl($itemId),
                 $attributes,
@@ -45,7 +45,7 @@ abstract class CrudEndpoint extends Endpoint
         $params = $everywhere ? ['everywhere' => $everywhere] : [];
 
         return $this
-            ->getHttp()
+            ->http
             ->delete(
                 $this->makeRequestUrl($itemId),
                 $params,
