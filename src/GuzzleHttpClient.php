@@ -2,14 +2,14 @@
 
 namespace seregazhuk\Favro;
 
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use seregazhuk\Favro\Contracts\HttpClient;
 
 class GuzzleHttpClient implements HttpClient
 {
     /**
-     * @var ClientInterface
+     * @var Client
      */
     protected $client;
 
@@ -19,9 +19,9 @@ class GuzzleHttpClient implements HttpClient
     protected $responseHeaders;
 
     /**
-     * @param ClientInterface $client
+     * @param Client $client
      */
-    public function __construct(ClientInterface $client)
+    public function __construct(Client $client)
     {
         $this->client = $client;
     }
@@ -30,9 +30,9 @@ class GuzzleHttpClient implements HttpClient
      * @param string $uri
      * @param array $params
      * @param array $headers
-     * @return string
+     * @return array
      */
-    public function get($uri, $params = [], $headers = [])
+    public function get($uri, array $params = [], array $headers = [])
     {
         if (!empty($params)) {
             $uri .= '?' . http_build_query($params);
@@ -49,9 +49,9 @@ class GuzzleHttpClient implements HttpClient
      * @param string $uri
      * @param array $body
      * @param array $headers
-     * @return string
+     * @return array
      */
-    public function post($uri, $body = [], $headers = [])
+    public function post($uri, array $body = [], array $headers = [])
     {
         $response = $this
             ->client
@@ -71,7 +71,7 @@ class GuzzleHttpClient implements HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function put($uri, $body = [], $headers = [])
+    public function put($uri, array $body = [], array $headers = [])
     {
         $response = $this
             ->client
@@ -91,7 +91,7 @@ class GuzzleHttpClient implements HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function delete($uri, $body = [], $headers = [])
+    public function delete($uri, array $body = [], array $headers = [])
     {
         $response = $this
             ->client

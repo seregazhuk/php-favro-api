@@ -88,7 +88,7 @@ class Api
     }
 
     /**
-     * @param int $organizationId
+     * @param string $organizationId
      * @return $this
      */
     public function setOrganizationId($organizationId)
@@ -107,7 +107,7 @@ class Api
     }
 
     /**
-     * @param $organizationName
+     * @param string $organizationName
      * @return array|bool
      * @throws WrongOrganizationName
      */

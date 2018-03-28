@@ -4,7 +4,7 @@ namespace seregazhuk\tests;
 
 use Mockery;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use seregazhuk\Favro\GuzzleHttpClient;
@@ -16,7 +16,7 @@ class GuzzleHttpAdapterTest extends TestCase
     {
         $baseUrl = 'http://www.example.com';
 
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this
             ->createClient()
             ->shouldReceive('setBaseUrl')
@@ -34,7 +34,7 @@ class GuzzleHttpAdapterTest extends TestCase
         $params = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this
             ->createClient()
             ->shouldReceive('get')
@@ -56,7 +56,7 @@ class GuzzleHttpAdapterTest extends TestCase
         $body = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this->createClient()
             ->shouldReceive('post')
             ->with(
@@ -77,7 +77,7 @@ class GuzzleHttpAdapterTest extends TestCase
         $body = ['param1' => 'test'];
         $headers = ['header1' => 'test'];
 
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this->createClient()
             ->shouldReceive('put')
             ->with(
@@ -97,7 +97,7 @@ class GuzzleHttpAdapterTest extends TestCase
         $uri = '/test';
         $headers = ['header1' => 'test'];
 
-        /** @var ClientInterface $client */
+        /** @var Client $client */
         $client = $this->createClient()
             ->shouldReceive('delete')
             ->with($uri, ['headers' => $headers, 'form_params' => []])
@@ -109,11 +109,11 @@ class GuzzleHttpAdapterTest extends TestCase
     }
 
     /**
-     * @return MockInterface|ClientInterface
+     * @return MockInterface|Client
      */
     protected function createClient()
     {
-        return \Mockery::mock(ClientInterface::class);
+        return \Mockery::mock(Client::class);
     }
 
     protected function tearDown()

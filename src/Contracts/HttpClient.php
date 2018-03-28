@@ -5,12 +5,12 @@ namespace seregazhuk\Favro\Contracts;
 interface HttpClient
 {
     /**
-     * @param $uri
+     * @param string $uri
      * @param array $params
      * @param array $headers
      * @return array
      */
-    public function get($uri, $params = [], $headers = []);
+    public function get($uri, array $params = [], array $headers = []);
 
     /**
      * @param string $uri
@@ -18,7 +18,7 @@ interface HttpClient
      * @param array $headers
      * @return array
      */
-    public function post($uri, $body = [], $headers = []);
+    public function post($uri, array $body = [], array $headers = []);
 
     /**
      * @param string $uri
@@ -26,7 +26,7 @@ interface HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function put($uri, $body = [], $headers = []);
+    public function put($uri, array $body = [], array $headers = []);
 
     /**
      * @param string $uri
@@ -34,7 +34,7 @@ interface HttpClient
      * @param array $headers
      * @return mixed
      */
-    public function delete($uri, $body = [], $headers = []);
+    public function delete($uri, array $body = [], array $headers = []);
 
     /**
      * @param string $url
