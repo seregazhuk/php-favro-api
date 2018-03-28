@@ -54,7 +54,7 @@ abstract class Endpoint
             ->get(
                 $this->makeRequestUrl(),
                 $params,
-                $this->getHeaders()
+                $this->headers()
             );
     }
 
@@ -69,14 +69,14 @@ abstract class Endpoint
             ->get(
                 $this->makeRequestUrl($id),
                 [],
-                $this->getHeaders()
+                $this->headers()
             );
     }
 
     /**
      * @return array
      */
-    public function getHeaders()
+    protected function headers()
     {
         return array_merge(
             ['organizationId' => $this->organizationId],

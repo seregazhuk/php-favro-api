@@ -15,7 +15,7 @@ abstract class CrudEndpoint extends Endpoint
             ->post(
                 $this->makeRequestUrl(),
                 $attributes,
-                $this->getHeaders()
+                $this->headers()
             );
     }
 
@@ -31,7 +31,7 @@ abstract class CrudEndpoint extends Endpoint
             ->put(
                 $this->makeRequestUrl($itemId),
                 $attributes,
-                $this->getHeaders()
+                $this->headers()
             );
     }
 
@@ -49,7 +49,7 @@ abstract class CrudEndpoint extends Endpoint
             ->delete(
                 $this->makeRequestUrl($itemId),
                 $params,
-                $this->getHeaders()
+                $this->headers()
             );
     }
 }

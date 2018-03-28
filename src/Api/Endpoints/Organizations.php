@@ -11,9 +11,7 @@ class Organizations extends CrudEndpoint
      */
     public function getById($id)
     {
-        $this->headers['organizationId'] = $id;
-
-        return parent::getById($id);
+        return $this->withOrganization($id)->getById($id);
     }
 
     /**
@@ -23,9 +21,7 @@ class Organizations extends CrudEndpoint
      */
     public function update($itemId, array $attributes)
     {
-        $this->headers['organizationId'] = $itemId;
-
-        return parent::update($itemId, $attributes);
+        return $this->withOrganization($itemId)->update($itemId, $attributes);
     }
 
     /**

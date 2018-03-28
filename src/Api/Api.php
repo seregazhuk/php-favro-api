@@ -64,13 +64,9 @@ class Api
      */
     public function __get($alias)
     {
-        $endpoint = $this->resolveEndpoint($alias);
-
-        if (method_exists($endpoint, 'setOrganizationId')) {
-            $endpoint->setOrganizationId($this->organizationId);
-        }
-
-        return $endpoint;
+        return $this
+            ->resolveEndpoint($alias)
+            ->withOrganization($this->organizationId);
     }
 
     /**
@@ -78,32 +74,13 @@ class Api
      * @return $this
      * @throws WrongOrganizationName
      */
-    public function setOrganization($organizationName)
+    public function useOrganization($organizationName)
     {
         if($organization = $this->getOrganizationByName($organizationName)) {
-            $this->setOrganizationId($organization['organizationId']);
+            $this->organizationId = $organization['organizationId'];
         }
 
         return $this;
-    }
-
-    /**
-     * @param string $organizationId
-     * @return $this
-     */
-    public function setOrganizationId($organizationId)
-    {
-        $this->organizationId = $organizationId;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOrganizationId()
-    {
-        return $this->organizationId;
     }
 
     /**
@@ -115,7 +92,7 @@ class Api
     {
         $organizations = $this->organizations->getAll();
         foreach ($organizations['entities'] as $entity) {
-            if ($entity['name'] == $organizationName) {
+            if ($entity['name'] === $organizationName) {
                 return $entity;
             }
         }
@@ -124,19 +101,19 @@ class Api
     }
 
     /**
-     * @param string $endpoint
+     * @param string $alias
      * @return Endpoint
      * @throws WrongEndpoint
      */
-    private function resolveEndpoint($endpoint)
+    private function resolveEndpoint($alias)
     {
-        $endpoint = strtolower($endpoint);
+        $alias = strtolower($alias);
 
-        if(isset($this->endpoints[$endpoint])) {
-            return $this->endpoints[$endpoint];
+        if(isset($this->endpoints[$alias])) {
+            return $this->endpoints[$alias];
         }
 
-        throw new WrongEndpoint("There is no endpoint called $endpoint.");
+        throw new WrongEndpoint("There is no endpoint called $alias.");
     }
 
     /**
