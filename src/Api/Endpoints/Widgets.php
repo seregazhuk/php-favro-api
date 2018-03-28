@@ -14,7 +14,7 @@ class Widgets extends CrudEndpoint
         $attributes = $collectionId ? ['collectionId' => $collectionId] : [];
 
         return $this
-            ->getHttp()
+            ->http
             ->delete(
                 $this->makeRequestUrl($itemId),
                 $attributes,
