@@ -104,17 +104,6 @@ class GuzzleHttpClient implements HttpClient
     }
 
     /**
-     * @param string $url
-     * @return $this
-     */
-    public function setBaseUrl($url)
-    {
-        $this->client->setBaseUrl($url);
-
-        return $this;
-    }
-
-    /**
      * @param ResponseInterface $response
      * @return array|null
      */
