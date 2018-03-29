@@ -76,7 +76,7 @@ class Api
      */
     public function useOrganization($organizationName)
     {
-        if($organization = $this->getOrganizationByName($organizationName)) {
+        if ($organization = $this->getOrganizationByName($organizationName)) {
             $this->organizationId = $organization['organizationId'];
         }
 
@@ -109,7 +109,7 @@ class Api
     {
         $alias = strtolower($alias);
 
-        if(isset($this->endpoints[$alias])) {
+        if (isset($this->endpoints[$alias])) {
             return $this->endpoints[$alias];
         }
 
