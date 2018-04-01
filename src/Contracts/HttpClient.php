@@ -37,12 +37,6 @@ interface HttpClient
     public function delete($uri, array $body = [], array $headers = []);
 
     /**
-     * @param string $url
-     * @return $this
-     */
-    public function setBaseUrl($url);
-
-    /**
      * @return array
      */
     public function getResponseHeaders();
