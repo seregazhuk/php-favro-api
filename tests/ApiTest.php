@@ -35,7 +35,7 @@ class ApiTest extends TestCase
     /** @test */
     public function it_throws_exception_for_wrong_endpoint()
     {
-        $this->setExpectedException(WrongEndpoint::class);
+        $this->expectException(WrongEndpoint::class);
         $api = $this->makeApi();
         $api->test->getAll();
     }
